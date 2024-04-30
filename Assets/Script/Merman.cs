@@ -6,33 +6,55 @@ public class Merman : MonoBehaviour
 {
     //VARIABLES
     Rigidbody2D rb;
+    [SerializeField] private AudioClip soundClip;
+    private AudioSource audioSource;
     private float healthPoint = 3f;
+    private bool isDead = false;
 
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
+
+        audioSource.clip = soundClip;
     }
 
+    //VÉRIFIE LES COLLISIONS
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        healthPoint--;
-        if (isDead(healthPoint))
+        //SI LA COLLISION EST UN PROJECTILE
+        if(collision.gameObject.CompareTag("Projectile"))
         {
-            Destroy(gameObject);
+            takeDamage(1f);
         }
-        else 
+        
+    }
+
+    //APPLIQUE X DÉGATS A MERMAN
+    private void takeDamage(float damage) 
+    {
+        healthPoint -= damage;
+
+        if (healthPoint <= 0 && !isDead)
         {
-            print(healthPoint);
+            isDead = true;
+
+            audioSource.pitch = 0.6f;
+            audioSource.Play();
+
+            Invoke("Death", 0.15f);
+        }
+        else
+        {
+            audioSource.Play();
+            Debug.Log(name + "| HP : " + healthPoint);
         }
     }
 
-    private bool isDead(float healthPoint)
-    { 
-        if(healthPoint <= 0) 
-        {
-            return true;
-        }
-        else { return false; }
+    private void Death() 
+    {
+        Destroy(gameObject);
     }
+
 }

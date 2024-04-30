@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Player : MonoBehaviour
 {
     // VARIABLES
     [SerializeField] GameObject scythePrefab;
+    List<GameObject> targets = new List<GameObject>();
     Rigidbody2D rb;
+    CapsuleCollider2D playerRange;
+
     private float moveSpeed = 5f;
     //private float attackSpeed = 1f;
     //private float attackDamage;
@@ -19,15 +23,17 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerRange= GetComponent<CapsuleCollider2D>();
+
         //InvokeRepeating("Attack", 0 ,attackSpeed); //pour appeler la fonction attack
     }
 
     private void Update()
     {
         currentAttackCooldown -= Time.deltaTime; // * attackSpeed;
-        if(currentAttackCooldown <= 0) 
+        if(currentAttackCooldown <= 0 && targets.Count > 0) 
         {
-            Attack();
+            AttackClosestEnemy();
         }
     }
 
@@ -37,18 +43,71 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         float verticalInput = Input.GetAxisRaw("Vertical");
 
-        //Méthode Altérnative pour le déplacement du joueur
-        //Vector2 movement = new Vector2(horizontalInput, verticalInput).normalized;
-        //transform.Translate(movement * moveSpeed * Time.deltaTime);
-
         rb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed;
 
     }
 
-    private void Attack() 
+    //FAIT APPARAITRE UN PROJECTILE ORIENTÉ DANS LA DIRECTION DE L'ENEMY LE PLUS PROCHE
+    private void AttackClosestEnemy()
     {
-        Instantiate(scythePrefab, transform.position, Quaternion.identity); //Quaternion.identity laisse la rotation à 0
-        currentAttackCooldown += AttackCooldown;
+        //DÉFINI LA CIBLE A ATTACK
+        GameObject targetToAttack = ClosestTarget();
+
+        if (targetToAttack == null) { return;}
+
+        //CALCULE LA DIRECTION DE LA CIBLE
+        Vector3 directionToTarget = targetToAttack.transform.position - transform.position;
+        directionToTarget.Normalize();
+
+        //CALCULE L'ANGLE DE ROTATION EN RADIANS
+        float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+
+        //FAIT SPAWN UN PROJECTILE ORIENTÉ VERS LA CIBLE
+        Instantiate(scythePrefab, transform.position, Quaternion.Euler(0,0, angle));
+        currentAttackCooldown += AttackCooldown; //COOLDOWN
+    }
+
+    //DÉTERMINE L'ENEMY LE PLUS PROCHE
+    private GameObject ClosestTarget() 
+    {
+        GameObject closestTarget = null;
+        float closestDistance = Mathf.Infinity;
+
+
+        //POUR CHAQUE ENEMY DANS LA LISTE DE TARGET, COMPARE LA DISTANCE
+        foreach(GameObject target in targets)
+        {
+            float distance = Vector3.Distance(transform.position, target.transform.position);
+            if(distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestTarget = target;
+            }
+        }
+
+        //RETOURNE L'ENEMY LE PLUS PROCHE DU JOUEUR
+        return closestTarget;
+    }
+
+    //AJOUTE LES ENEMY IN-RANGE DANS LA LISTE DE TARGET
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //VÉRIFIE SI LA COLLISION EST AVEC UN ENEMY
+        if(collision.gameObject.CompareTag("Enemy")) 
+        {
+            targets.Add(collision.gameObject);
+        }
+        
+    }
+
+    //RETIRE LES ENEMY OUT OF RANGE DE LA LISTE DE TARGET
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //VÉRIFIE SI LA COLLISION EST AVEC UN ENEMY
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            targets.Remove(collision.gameObject);
+        }
     }
 
 }
