@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     CapsuleCollider2D playerRange;
 
     private float moveSpeed = 5f;
-    //private float attackSpeed = 1f;
+    private float attackSpeed = 2f;
     //private float attackDamage;
     //private float healthPoint = 10f;
 
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        currentAttackCooldown -= Time.deltaTime; // * attackSpeed;
+        currentAttackCooldown -= Time.deltaTime * attackSpeed;
         if(currentAttackCooldown <= 0 && targets.Count > 0) 
         {
             AttackClosestEnemy();

@@ -5,19 +5,15 @@ using UnityEngine;
 public class Merman : MonoBehaviour
 {
     //VARIABLES
+    SoundPlayer soundPlayer;
     Rigidbody2D rb;
-    [SerializeField] private AudioClip soundClip;
-    private AudioSource audioSource;
     private float healthPoint = 3f;
     private bool isDead = false;
 
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        audioSource = GetComponent<AudioSource>();
-
-        audioSource.clip = soundClip;
+        soundPlayer = SoundPlayer.GetInstance();
     }
 
     //VÉRIFIE LES COLLISIONS
@@ -40,14 +36,13 @@ public class Merman : MonoBehaviour
         {
             isDead = true;
 
-            audioSource.pitch = 0.6f;
-            audioSource.Play();
+            soundPlayer.PlayDeathAudio();
 
-            Invoke("Death", 0.15f);
+            Death();
         }
         else
         {
-            audioSource.Play();
+            soundPlayer.PlayHurtAudio();
             Debug.Log(name + "| HP : " + healthPoint);
         }
     }
