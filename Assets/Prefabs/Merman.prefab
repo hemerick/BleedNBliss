@@ -203,4 +203,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6d0307f6deabc4fa382ec113a3a17d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundPlayer: {fileID: 0}
+  moveSpeed: 1.5
+  healthPoint: 2

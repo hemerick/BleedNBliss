@@ -5,6 +5,7 @@ using UnityEngine;
 public class Merman : MonoBehaviour, IPoolable
 {
     //VARIABLES
+    private GameObject target;
     Rigidbody2D rb;
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float healthPoint = 3f;
@@ -12,6 +13,7 @@ public class Merman : MonoBehaviour, IPoolable
 
     private void Start()
     {
+        target = Player.GetInstance().gameObject;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -64,7 +66,7 @@ public class Merman : MonoBehaviour, IPoolable
     private void MoveTowardPlayer()
     {
 
-        Vector2 direction = (Player.GetInstance().transform.position - transform.position).normalized;
+        Vector2 direction = (target.transform.position - transform.position).normalized;
         rb.velocity = direction * moveSpeed;
 
     }
