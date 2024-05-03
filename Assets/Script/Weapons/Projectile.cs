@@ -6,13 +6,13 @@ public class Projectile : MonoBehaviour, IPoolable
 {
     //private float damage;
     private float rotationSpeed = 575f;
-    float lifetime = 2f;
+    float lifetime = 0.4f;
 
     Vector3 movement;
 
     public void Reset()
     {
-        lifetime = 2f;
+        lifetime = 0.4f;
         //movement = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z) * Vector3.right;
         movement = transform.rotation * Vector3.right;
     }

@@ -155,10 +155,13 @@ MonoBehaviour:
   poolsInfo:
   - objectToPool: {fileID: 973102459503394181, guid: 0ae158527eb38fd45bde0eb495b593b6, type: 3}
     poolCount: 20
+    currentIndex: 0
   - objectToPool: {fileID: 6299463800855934744, guid: d8285cc656bf27c4b8563bfe9491f941, type: 3}
-    poolCount: 50
+    poolCount: 300
+    currentIndex: 0
   - objectToPool: {fileID: 6226008617931235186, guid: 8d54b0677313d28448e67ba82e043f8e, type: 3}
     poolCount: 10
+    currentIndex: 0
 --- !u!4 &195227810
 Transform:
   m_ObjectHideFlags: 0
@@ -304,12 +307,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 829301885}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
@@ -393,6 +396,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &829301885 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2501808042239406460, guid: a9ddc30c2fea4774a852ec4f982af61a, type: 3}
+  m_PrefabInstance: {fileID: 47748763051844137}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1090207644
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +587,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0469ec4ce298a054582de3e5b883481d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnRadius: 5
   enemyToSpawn: {fileID: 6299463800855934744, guid: d8285cc656bf27c4b8563bfe9491f941, type: 3}
+  spawnAmount: 3
 --- !u!1001 &47748763051844137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -594,7 +604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2501808042239406460, guid: a9ddc30c2fea4774a852ec4f982af61a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2501808042239406460, guid: a9ddc30c2fea4774a852ec4f982af61a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -634,7 +644,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2501808042239406460, guid: a9ddc30c2fea4774a852ec4f982af61a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 519420032}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9ddc30c2fea4774a852ec4f982af61a, type: 3}
 --- !u!1001 &2557609653386743095
@@ -702,7 +715,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 47748763051844137}
   - {fileID: 2557609653386743095}

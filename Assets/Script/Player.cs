@@ -12,6 +12,10 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     CapsuleCollider2D playerRange;
 
+    private static Player instance;
+
+    public static Player GetInstance() => instance; 
+
     private float moveSpeed = 5f;
     private float attackSpeed = 2f;
     //private float attackDamage;
@@ -20,18 +24,27 @@ public class Player : MonoBehaviour
     float AttackCooldown = 2;
     float currentAttackCooldown;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerRange= GetComponent<CapsuleCollider2D>();
+        playerRange = GetComponent<CapsuleCollider2D>();
     }
 
     private void Update()
     {
-        currentAttackCooldown -= Time.deltaTime * attackSpeed;
-        if(currentAttackCooldown <= 0 && targets.Count > 0) 
+        if (currentAttackCooldown <= 0 && targets.Count > 0)
         {
             AttackClosestEnemy();
+            currentAttackCooldown = AttackCooldown;
+        }
+        else
+        {
+            currentAttackCooldown -= Time.deltaTime * attackSpeed;
         }
     }
 
@@ -51,7 +64,7 @@ public class Player : MonoBehaviour
         //DÉFINI LA CIBLE A ATTACK
         GameObject targetToAttack = ClosestTarget();
 
-        if (targetToAttack == null) { return;}
+        if (targetToAttack == null) { return; }
 
         //CALCULE LA DIRECTION DE LA CIBLE
         Vector3 directionToTarget = targetToAttack.transform.position - transform.position;
@@ -67,21 +80,20 @@ public class Player : MonoBehaviour
         scythe.SetActive(true);
         scythe.GetComponent<IPoolable>().Reset();
 
-        currentAttackCooldown += AttackCooldown; //COOLDOWN
     }
 
     //DÉTERMINE L'ENEMY LE PLUS PROCHE
-    private GameObject ClosestTarget() 
+    private GameObject ClosestTarget()
     {
         GameObject closestTarget = null;
         float closestDistance = Mathf.Infinity;
 
 
         //POUR CHAQUE ENEMY DANS LA LISTE DE TARGET, COMPARE LA DISTANCE
-        foreach(GameObject target in targets)
+        foreach (GameObject target in targets)
         {
             float distance = Vector3.Distance(transform.position, target.transform.position);
-            if(distance < closestDistance)
+            if (distance < closestDistance)
             {
                 closestDistance = distance;
                 closestTarget = target;
@@ -96,18 +108,18 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //VÉRIFIE SI LA COLLISION EST AVEC UN ENEMY
-        if(collision.gameObject.CompareTag("Enemy")) 
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             targets.Add(collision.gameObject);
         }
-        
+
     }
 
     //RETIRE LES ENEMY OUT OF RANGE DE LA LISTE DE TARGET
     private void OnTriggerExit2D(Collider2D collision)
     {
         //VÉRIFIE SI LA COLLISION EST AVEC UN ENEMY
-        if(collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             targets.Remove(collision.gameObject);
         }
