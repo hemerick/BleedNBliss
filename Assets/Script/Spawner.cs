@@ -8,12 +8,21 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("SpawnEnemy", 2f, 3f);
-
+        //Coroutine est une méthode qui peut inclure des délais de temps
+        StartCoroutine(SpawnEnemy());
     }
 
-    public void SpawnEnemy()
-    { 
-        Instantiate(enemyToSpawn, new Vector3(3f, 3f, 0), Quaternion.identity);
+
+    public IEnumerator SpawnEnemy()
+    {
+        while (true)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+
+                Instantiate(enemyToSpawn, new Vector3(3f, 3f, 0), Quaternion.identity);
+            }
+                yield return new WaitForSeconds(3);
+        }
     }
 }

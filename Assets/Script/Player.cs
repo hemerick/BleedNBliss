@@ -24,8 +24,6 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerRange= GetComponent<CapsuleCollider2D>();
-
-        //InvokeRepeating("Attack", 0 ,attackSpeed); //pour appeler la fonction attack
     }
 
     private void Update()
@@ -61,9 +59,14 @@ public class Player : MonoBehaviour
 
         //CALCULE L'ANGLE DE ROTATION EN RADIANS
         float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
-        //FAIT SPAWN UN PROJECTILE ORIENTÉ VERS LA CIBLE
-        Instantiate(scythePrefab, transform.position, Quaternion.Euler(0,0, angle));
+        //PREND UN PROJECTILE DU POOL ET L'ORIENTE VERS LA CIBLE
+        GameObject scythe = ObjectPool.GetInstance().GetPooledObject();
+        scythe.transform.SetPositionAndRotation(transform.position, rotation);
+        scythe.SetActive(true);
+        scythe.GetComponent<IPoolable>().Reset();
+
         currentAttackCooldown += AttackCooldown; //COOLDOWN
     }
 
