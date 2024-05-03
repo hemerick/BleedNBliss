@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
         //PREND UN PROJECTILE DU POOL ET L'ORIENTE VERS LA CIBLE
-        GameObject scythe = ObjectPool.GetInstance().GetPooledObject();
+        GameObject scythe = ObjectPool.GetInstance().GetPooledObject(scythePrefab);
         scythe.transform.SetPositionAndRotation(transform.position, rotation);
         scythe.SetActive(true);
         scythe.GetComponent<IPoolable>().Reset();
