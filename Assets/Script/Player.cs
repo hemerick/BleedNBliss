@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     List<GameObject> targets = new List<GameObject>();
     Rigidbody2D rb;
     CapsuleCollider2D playerRange;
+    SpriteRenderer sprite;
 
     private static Player instance;
 
@@ -19,7 +21,7 @@ public class Player : MonoBehaviour
     private float moveSpeed = 5f;
     private float attackSpeed = 2f;
     //private float attackDamage;
-    //private float healthPoint = 10f;
+    private float healthPoint = 10f;
 
     float AttackCooldown = 2;
     float currentAttackCooldown;
@@ -33,6 +35,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         playerRange = GetComponent<CapsuleCollider2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -125,4 +128,23 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        TakeDamage();
+    }
+
+
+    private void TakeDamage()
+    {
+        healthPoint--;
+        Debug.Log("HP : " + healthPoint);
+        StartCoroutine(FlashRed());
+    }
+
+    private IEnumerator FlashRed()
+    {
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        sprite.color = Color.white;
+    }
 }

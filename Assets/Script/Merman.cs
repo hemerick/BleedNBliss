@@ -5,16 +5,19 @@ using UnityEngine;
 public class Merman : MonoBehaviour, IPoolable
 {
     //VARIABLES
-    private GameObject target;
-    Rigidbody2D rb;
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float healthPoint = 3f;
+    private GameObject target;
+    private Rigidbody2D rb;
+    private SpriteRenderer sprite;
+
     private bool isDead = false;
 
     private void Start()
     {
         target = Player.GetInstance().gameObject;
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     public void Reset()
@@ -59,6 +62,7 @@ public class Merman : MonoBehaviour, IPoolable
         else
         {
             SoundPlayer.GetInstance().PlayHurtAudio();
+            StartCoroutine(FlashRed());
             //Debug.Log(name + "| HP : " + healthPoint);
         }
     }
@@ -69,6 +73,13 @@ public class Merman : MonoBehaviour, IPoolable
         Vector2 direction = (target.transform.position - transform.position).normalized;
         rb.velocity = direction * moveSpeed;
 
+    }
+
+    private IEnumerator FlashRed() 
+    {
+        sprite.color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        sprite.color = Color.white;
     }
 
     private void Death()

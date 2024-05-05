@@ -59,7 +59,8 @@ public class Spawner : MonoBehaviour
                 enemy.SetActive(true);
             }
                 yield return new WaitForSeconds(7);
-            spawnAmount += (spawnAmount/2);
+            spawnAmount += (spawnAmount/10);
+            spawnAmount++;
         }
     }
 
