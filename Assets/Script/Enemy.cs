@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class Merman : MonoBehaviour, IPoolable
 {
     //VARIABLES
+    [SerializeField] private GameObject experiencePrefab;
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float healthPoint = 3f;
+    [SerializeField] private int experienceDrop;
     private GameObject target;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
@@ -82,8 +85,25 @@ public class Merman : MonoBehaviour, IPoolable
         sprite.color = Color.white;
     }
 
+    private bool dropExperience(float dropPercent) 
+    {
+        float tempDropPercent = Random.Range(0, 100);
+        if (tempDropPercent <= dropPercent) 
+        {
+            return true;
+        }
+        return false;
+    }
+
     private void Death()
     {
+        if (dropExperience(50)) 
+        {
+            GameObject experience = ObjectPool.GetInstance().GetPooledObject(experiencePrefab);
+            experience.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
+            experience.GetComponent<IPoolable>().Reset();
+            experience.SetActive(true);
+        }
         gameObject.SetActive(false);
         rb.velocity = Vector2.zero;
     }

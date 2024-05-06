@@ -119,8 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6d0307f6deabc4fa382ec113a3a17d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  experiencePrefab: {fileID: 3409999097752316731, guid: adb831bbcf1534144b44ee1589bf30ee, type: 3}
   moveSpeed: 0.5
   healthPoint: 4
+  experienceDrop: 25
 --- !u!212 &8573347400875457698
 SpriteRenderer:
   m_ObjectHideFlags: 0

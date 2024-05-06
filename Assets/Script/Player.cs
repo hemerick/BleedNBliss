@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject scythePrefab;
     List<GameObject> targets = new List<GameObject>();
     Rigidbody2D rb;
-    CapsuleCollider2D playerRange;
     SpriteRenderer sprite;
 
     private static Player instance;
@@ -34,7 +33,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerRange = GetComponent<CapsuleCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
     }
 
@@ -108,29 +106,32 @@ public class Player : MonoBehaviour
     }
 
     //AJOUTE LES ENEMY IN-RANGE DANS LA LISTE DE TARGET
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D trigger)
     {
         //VÉRIFIE SI LA COLLISION EST AVEC UN ENEMY
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (trigger.gameObject.CompareTag("Enemy"))
         {
-            targets.Add(collision.gameObject);
+            targets.Add(trigger.gameObject);
         }
 
     }
 
     //RETIRE LES ENEMY OUT OF RANGE DE LA LISTE DE TARGET
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D trigger)
     {
         //VÉRIFIE SI LA COLLISION EST AVEC UN ENEMY
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (trigger.gameObject.CompareTag("Enemy"))
         {
-            targets.Remove(collision.gameObject);
+            targets.Remove(trigger.gameObject);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        TakeDamage();
+        if (collision.gameObject.CompareTag("Enemy")) 
+        {
+            TakeDamage();
+        }
     }
 
 
