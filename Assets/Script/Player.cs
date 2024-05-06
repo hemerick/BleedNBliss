@@ -5,11 +5,11 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IExperienceObserver
 {
     // VARIABLES
     [SerializeField] GameObject scythePrefab;
-    List<GameObject> targets = new List<GameObject>();
+    List<GameObject> targets = new();
     Rigidbody2D rb;
     SpriteRenderer sprite;
 
@@ -19,8 +19,10 @@ public class Player : MonoBehaviour
 
     private float moveSpeed = 5f;
     private float attackSpeed = 2f;
-    //private float attackDamage;
+    private float attackDamage;
     private float healthPoint = 10f;
+    private int playerXP = 0;
+
 
     float AttackCooldown = 2;
     float currentAttackCooldown;
@@ -151,6 +153,7 @@ public class Player : MonoBehaviour
 
     public void GainExperience(int xpValue)
     {
-        throw new NotImplementedException();
+        playerXP += xpValue;
+        Debug.Log("PLAYER XP : " + playerXP);
     }
 }
