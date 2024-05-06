@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
-public class Merman : MonoBehaviour, IPoolable
+public class Enemy : MonoBehaviour, IPoolable
 {
     //VARIABLES
     [SerializeField] private GameObject experiencePrefab;
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float healthPoint = 3f;
     [SerializeField] private int experienceDrop;
+
+    //CONSTANTES
+    private const int EXP_DROP_CHANCE = 50;
+
+    //COMPONENTS
     private GameObject target;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
@@ -44,13 +49,13 @@ public class Merman : MonoBehaviour, IPoolable
         //SI LA COLLISION EST UN PROJECTILE
         if (collision.gameObject.CompareTag("Projectile"))
         {
-            takeDamage(1f);
+            TakeDamage(1f);
         }
 
     }
 
     //APPLIQUE X DÉGATS A MERMAN
-    private void takeDamage(float damage)
+    private void TakeDamage(float damage)
     {
         healthPoint -= damage;
 
@@ -66,7 +71,6 @@ public class Merman : MonoBehaviour, IPoolable
         {
             SoundPlayer.GetInstance().PlayHurtAudio();
             StartCoroutine(FlashRed());
-            //Debug.Log(name + "| HP : " + healthPoint);
         }
     }
 
@@ -85,7 +89,7 @@ public class Merman : MonoBehaviour, IPoolable
         sprite.color = Color.white;
     }
 
-    private bool dropExperience(float dropPercent) 
+    private bool DropExperience(float dropPercent) 
     {
         float tempDropPercent = Random.Range(0, 100);
         if (tempDropPercent <= dropPercent) 
@@ -97,7 +101,7 @@ public class Merman : MonoBehaviour, IPoolable
 
     private void Death()
     {
-        if (dropExperience(50)) 
+        if (DropExperience(EXP_DROP_CHANCE))
         {
             GameObject experience = ObjectPool.GetInstance().GetPooledObject(experiencePrefab);
             experience.transform.SetPositionAndRotation(transform.position, Quaternion.identity);

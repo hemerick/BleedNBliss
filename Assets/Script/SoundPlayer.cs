@@ -7,6 +7,7 @@ public class SoundPlayer : MonoBehaviour
     private static SoundPlayer instance;
 
     [SerializeField] private AudioSource deathAudio;
+    [SerializeField] private AudioSource expAudio;
 
     float initialPitch;
 
@@ -33,4 +34,8 @@ public class SoundPlayer : MonoBehaviour
         deathAudio.Play();
     }
 
+    public void PlayCollectingAudio() 
+    {
+        expAudio.Play();
+    }
 }

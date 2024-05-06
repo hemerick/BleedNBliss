@@ -84,7 +84,10 @@ public class ObjectPool : MonoBehaviour
             Debug.LogError("PREFAB NOT SET");
             return null;
         }
+        Debug.LogError("TOUS LES OBJETS SONT DÉJA ACTIF (" + prefab + ")");
         return null; //SI TOUS EST DEJA ACTIFS
+
+
         //À FAIRE : RENDRE LE POOL DYNAMIQUE, SI TOUS LES OBJETS SONT ACTIF, CRÉER PLUS D'INSTANCES
 
         /*PREMIERE MÉTHODE APPRISE EN CLASSE

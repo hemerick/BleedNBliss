@@ -148,4 +148,9 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         sprite.color = Color.white;
     }
+
+    public void GainExperience(int xpValue)
+    {
+        throw new NotImplementedException();
+    }
 }
