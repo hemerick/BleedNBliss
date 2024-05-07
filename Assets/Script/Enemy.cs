@@ -141,6 +141,7 @@ public class Enemy : MonoBehaviour, IPoolable
             experience.GetComponent<IPoolable>().Reset();
             experience.SetActive(true);
 
+            //Debug.Log(xpObj);
             EnemyDeathEvent?.Invoke(xpObj);
         }
             

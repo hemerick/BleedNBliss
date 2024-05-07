@@ -153,6 +153,7 @@ public class Player : MonoBehaviour, IExperienceObserver
 
     public void GainExperience(int xpValue)
     {
+        Debug.Log("EXP RECEIVED : " + xpValue);
         playerXP += xpValue;
         Debug.Log("PLAYER XP : " + playerXP);
     }

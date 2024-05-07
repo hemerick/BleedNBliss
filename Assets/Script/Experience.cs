@@ -46,12 +46,13 @@ public class Experience : MonoBehaviour, IPoolable
 
     private void OnDisable()
     {
-        Enemy.EnemyDeathEvent += HandleEnemyDeath;
+        Enemy.EnemyDeathEvent -= HandleEnemyDeath;
     }
 
     private void HandleEnemyDeath(int experienceDrop)
     {
         xpValue = experienceDrop;
+        Debug.Log("XP VALUE : " + xpValue);
         SetColorByValue();
     }
 
@@ -125,6 +126,7 @@ public class Experience : MonoBehaviour, IPoolable
     //OBSERVER
     private void NotifyObserver()
     {
+        Debug.Log("XP : VALUE SENT -> " + xpValue);
         observer.GainExperience(xpValue);
     }
 
