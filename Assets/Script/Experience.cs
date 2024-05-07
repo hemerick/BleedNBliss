@@ -35,7 +35,21 @@ public class Experience : MonoBehaviour, IPoolable
     public void Reset()
     {
         currentLifetime = TOTAL_LIFETIME;
-        xpValue = Random.Range(1, 5);
+    }
+
+    private void OnEnable()
+    {
+        Enemy.EnemyDeathEvent += HandleEnemyDeath;
+    }
+
+    private void HandleEnemyDeath(int experienceDrop)
+    {
+        xpValue = experienceDrop;
+    }
+
+    private void OnDisable()
+    {
+        Enemy.EnemyDeathEvent += HandleEnemyDeath;
     }
 
     private void Update()
@@ -105,9 +119,9 @@ public class Experience : MonoBehaviour, IPoolable
     }
 
     //OBSERVER
-
     private void NotifyObserver()
     {
         observer.GainExperience(xpValue);
     }
+
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -11,6 +12,8 @@ public class Enemy : MonoBehaviour, IPoolable
     [SerializeField] private float healthPoint = 3f;
     [SerializeField] private int experienceDrop;
 
+    private bool isDead = false;
+
     //CONSTANTES
     private const int EXP_DROP_CHANCE = 50;
 
@@ -19,7 +22,9 @@ public class Enemy : MonoBehaviour, IPoolable
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
 
-    private bool isDead = false;
+    //EVENT
+    public static event Action<int> EnemyDeathEvent;
+    
 
     private void Start()
     {
@@ -91,7 +96,7 @@ public class Enemy : MonoBehaviour, IPoolable
 
     private bool DropExperience(float dropPercent) 
     {
-        float tempDropPercent = Random.Range(0, 100);
+        float tempDropPercent = UnityEngine.Random.Range(0, 100);
         if (tempDropPercent <= dropPercent) 
         {
             return true;
@@ -105,8 +110,11 @@ public class Enemy : MonoBehaviour, IPoolable
         {
             GameObject experience = ObjectPool.GetInstance().GetPooledObject(experiencePrefab);
             experience.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
-            experience.GetComponent<IPoolable>().Reset();
             experience.SetActive(true);
+            experience.GetComponent<IPoolable>().Reset();
+
+            EnemyDeathEvent?.Invoke(experienceDrop);
+            
         }
         gameObject.SetActive(false);
         rb.velocity = Vector2.zero;
