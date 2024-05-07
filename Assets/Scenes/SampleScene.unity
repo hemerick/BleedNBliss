@@ -281,6 +281,9 @@ MonoBehaviour:
   - objectToPool: {fileID: 3409999097752316731, guid: adb831bbcf1534144b44ee1589bf30ee, type: 3}
     poolCount: 500
     currentIndex: 0
+  - objectToPool: {fileID: 2435962979087170902, guid: 1db98753bf2212a448fe146fd59fc38b, type: 3}
+    poolCount: 300
+    currentIndex: 0
 --- !u!4 &195227810
 Transform:
   m_ObjectHideFlags: 0
@@ -16192,6 +16195,8 @@ MonoBehaviour:
   spawnInfos:
   - enemy: {fileID: 6226008617931235186, guid: 8d54b0677313d28448e67ba82e043f8e, type: 3}
     spawnChance: 10
+  - enemy: {fileID: 2435962979087170902, guid: 1db98753bf2212a448fe146fd59fc38b, type: 3}
+    spawnChance: 15
   defaultEnemy: {fileID: 6299463800855934744, guid: d8285cc656bf27c4b8563bfe9491f941, type: 3}
   spawnRadius: 5
   spawnAmount: 3
