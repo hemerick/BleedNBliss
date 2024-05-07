@@ -18,6 +18,7 @@ public class Experience : MonoBehaviour, IPoolable
 
     //CONSTANTES
     [SerializeField] private const float TOTAL_LIFETIME = 10f;
+    public static int[] xpValueRange= new int[] { 500, 100, 25, 5, 1};
 
     //COMPONENTS
     SpriteRenderer sprite;
@@ -25,7 +26,7 @@ public class Experience : MonoBehaviour, IPoolable
 
     private IExperienceObserver observer;
 
-    private void Start()
+    private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -34,6 +35,7 @@ public class Experience : MonoBehaviour, IPoolable
 
     public void Reset()
     {
+        xpValue= 0;
         currentLifetime = TOTAL_LIFETIME;
     }
 
@@ -42,15 +44,17 @@ public class Experience : MonoBehaviour, IPoolable
         Enemy.EnemyDeathEvent += HandleEnemyDeath;
     }
 
-    private void HandleEnemyDeath(int experienceDrop)
-    {
-        xpValue = experienceDrop;
-    }
-
     private void OnDisable()
     {
         Enemy.EnemyDeathEvent += HandleEnemyDeath;
     }
+
+    private void HandleEnemyDeath(int experienceDrop)
+    {
+        xpValue = experienceDrop;
+        SetColorByValue();
+    }
+
 
     private void Update()
     {
@@ -124,4 +128,45 @@ public class Experience : MonoBehaviour, IPoolable
         observer.GainExperience(xpValue);
     }
 
+    private void SetColorByValue() 
+    {
+        switch (xpValue) 
+        {
+            case 1:
+            {
+                    sprite.color = Color.white;
+            }
+            break;
+
+            case 5:
+            {
+                    sprite.color = Color.blue;
+            }
+            break;
+
+            case 25:
+            {
+                    sprite.color = Color.magenta;
+            }
+            break;
+
+            case 100:
+            {
+                    sprite.color = Color.yellow;
+            }
+            break;
+
+            case 500:
+            {
+                    sprite.color = Color.red;
+            }
+            break;
+
+            default: 
+            {
+                    Debug.LogError("INCORRECT VALUE :" + xpValue);
+            }
+            break;
+        }
+    }
 }

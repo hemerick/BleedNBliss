@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour, IPoolable
     private bool isDead = false;
 
     //CONSTANTES
-    private const int EXP_DROP_CHANCE = 50;
+    private const int EXP_DROP_CHANCE = 75;
 
     //COMPONENTS
     private GameObject target;
@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour, IPoolable
         sprite.color = Color.white;
     }
 
-    private bool DropExperience(float dropPercent) 
+    private bool CanDropExperience(float dropPercent) 
     {
         float tempDropPercent = UnityEngine.Random.Range(0, 100);
         if (tempDropPercent <= dropPercent) 
@@ -106,18 +106,49 @@ public class Enemy : MonoBehaviour, IPoolable
 
     private void Death()
     {
-        if (DropExperience(EXP_DROP_CHANCE))
+        if (CanDropExperience(EXP_DROP_CHANCE))
         {
-            GameObject experience = ObjectPool.GetInstance().GetPooledObject(experiencePrefab);
-            experience.transform.SetPositionAndRotation(transform.position, Quaternion.identity);
-            experience.SetActive(true);
-            experience.GetComponent<IPoolable>().Reset();
-
-            EnemyDeathEvent?.Invoke(experienceDrop);
-            
+            SpawnExp();
         }
         gameObject.SetActive(false);
         rb.velocity = Vector2.zero;
     }
 
+
+    private List<int> CalculExpValue() 
+    {
+        List<int> values = new();
+        int remainingExp = experienceDrop;
+
+        foreach(int exp in Experience.xpValueRange) 
+        {
+            while(remainingExp >= exp) 
+            {
+                values.Add(exp);
+                remainingExp -= exp;
+            }
+        }
+
+        return values;
+    }
+
+    private void SpawnExp() 
+    {
+        foreach(int xpObj in CalculExpValue())
+        {
+            GameObject experience = ObjectPool.GetInstance().GetPooledObject(experiencePrefab);
+            experience.transform.SetPositionAndRotation(RandomPositionAroundEnemy(), Quaternion.identity);
+            experience.GetComponent<IPoolable>().Reset();
+            experience.SetActive(true);
+
+            EnemyDeathEvent?.Invoke(xpObj);
+        }
+            
+    }
+
+    private Vector3 RandomPositionAroundEnemy()
+    {
+        Vector2 randomDirection = UnityEngine.Random.insideUnitCircle.normalized * .25f;
+        return new Vector3(transform.position.x + randomDirection.x, transform.position.y + randomDirection.y);
+    }
 }
