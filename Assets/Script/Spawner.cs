@@ -44,8 +44,8 @@ public class Spawner : MonoBehaviour
         //Coroutine est une méthode qui peut inclure des délais de temps
         StartCoroutine(SpawnEnemy());
     }
-
-
+    
+    
     public IEnumerator SpawnEnemy()
     {
         while (!Player.GetInstance().isDead)

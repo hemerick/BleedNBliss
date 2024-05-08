@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +16,20 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SimpleButton quitGameButton;
     [SerializeField] private SimpleButton menuButton;
 
+    //BAR REFERENCES
+    [SerializeField] private SliderBar expBar;
+    [SerializeField] private SliderBar hpBar;
+
+    //TXT REFERENCES
+    [SerializeField] private GameObject xpDisplay;
+    [SerializeField] private GameObject hpDisplay;
+    [SerializeField] private GameObject currentLvlDisplay;
+    [SerializeField] private GameObject nextLvlDisplay;
+    TextMeshProUGUI xpTXT;
+    TextMeshProUGUI hpTXT;
+    TextMeshProUGUI currentLvlTXT;
+    TextMeshProUGUI nextLvlTXT;
+
     private static GameManager instance;
 
     public static GameManager GetInstance() => instance;
@@ -22,6 +39,10 @@ public class GameManager : MonoBehaviour
         instance = this;
         ToggleUI(gameOverUI, false);
         ToggleUI(playerUI, true);
+        xpTXT = xpDisplay.GetComponent<TextMeshProUGUI>();
+        hpTXT = hpDisplay.GetComponent<TextMeshProUGUI>();
+        currentLvlTXT = currentLvlDisplay.GetComponent<TextMeshProUGUI>();
+        nextLvlTXT = nextLvlDisplay.GetComponent<TextMeshProUGUI>();
     }
 
     private void Start()
@@ -41,6 +62,24 @@ public class GameManager : MonoBehaviour
         UI.SetActive(toggle);
     }
 
+    public void SetPlayerXPDisplay(int value, int maxValue)
+    {
+        expBar.SetValue(value, maxValue);
+        xpTXT.text = value.ToString() + " / " + maxValue.ToString();
+    }
+
+    public void SetCurrentLvLDisplay(int lvl)
+    {
+        currentLvlTXT.text = lvl.ToString();
+        lvl++;
+        nextLvlTXT.text = lvl.ToString();
+    }
+
+    public void SetPlayerHPDisplay(int value, int maxValue) 
+    { 
+        hpBar.SetValue(value, maxValue);
+        hpTXT.text = value.ToString() + " / " + maxValue.ToString();
+    }
 
     private void RestartGame()
     {

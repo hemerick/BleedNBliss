@@ -20,8 +20,8 @@ public class Player : MonoBehaviour, IExperienceObserver
     private float moveSpeed = 5f;
     private float attackSpeed = 2f;
     private float attackDamage;
-    private float maxHealthPoint = 10f;
-    private float healthPoint = 10f;
+    private int maxHealthPoint = 10;
+    private int healthPoint = 10;
     private int projectileCount = 1;
 
     public int playerLVL = 1;
@@ -41,6 +41,10 @@ public class Player : MonoBehaviour, IExperienceObserver
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+
+        GameManager.GetInstance().SetPlayerHPDisplay(healthPoint, maxHealthPoint);
+        GameManager.GetInstance().SetPlayerXPDisplay(playerXP, RequiredXp);
+        GameManager.GetInstance().SetCurrentLvLDisplay(playerLVL);
     }
 
     private void Update()
@@ -56,7 +60,7 @@ public class Player : MonoBehaviour, IExperienceObserver
         }
     }
 
-
+    //MOVEMENT
     void FixedUpdate()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -72,7 +76,7 @@ public class Player : MonoBehaviour, IExperienceObserver
         {
             AttackClosestEnemy();
 
-            yield return new WaitForSeconds(.085f);
+            yield return new WaitForSeconds(.095f);
         }
     }
 
@@ -155,6 +159,7 @@ public class Player : MonoBehaviour, IExperienceObserver
     private void TakeDamage(int damage)
     {
         healthPoint -= damage;
+        GameManager.GetInstance().SetPlayerHPDisplay(healthPoint, maxHealthPoint);
 
         if (healthPoint <= 0 && !isDead)
         {
@@ -185,12 +190,15 @@ public class Player : MonoBehaviour, IExperienceObserver
     public void Respawn()
     {
         isDead = false;
+        maxHealthPoint = 10;
         healthPoint = maxHealthPoint;
         projectileCount= 1;
         playerXP = 0;
         RequiredXp = 8;
         playerLVL = 1;
-        ExperienceBar.GetInstance().SetExperience(playerXP, RequiredXp);
+        GameManager.GetInstance().SetPlayerXPDisplay(playerXP, RequiredXp);
+        GameManager.GetInstance().SetPlayerHPDisplay(healthPoint, maxHealthPoint);
+        GameManager.GetInstance().SetCurrentLvLDisplay(playerLVL);
         sprite.color = Color.white;
         gameObject.SetActive(true);
     }
@@ -214,17 +222,19 @@ public class Player : MonoBehaviour, IExperienceObserver
             RequiredXp *= 2;
             LevelUp();
         }
-        ExperienceBar.GetInstance().SetExperience(playerXP, RequiredXp);
+        GameManager.GetInstance().SetPlayerXPDisplay(playerXP, RequiredXp);
     }
 
     private void LevelUp()
     {
-        maxHealthPoint += 5;
-        attackSpeed += .25f;
+        maxHealthPoint += 1 * (playerLVL/3);
+        healthPoint += 1 * (playerLVL/3);
+        attackSpeed += .5f;
         moveSpeed += .1f;
         playerLVL++;
         projectileCount = playerLVL/2;
-        Debug.Log("LEVEL : " + playerLVL);
+        GameManager.GetInstance().SetPlayerHPDisplay(healthPoint, maxHealthPoint);
+        GameManager.GetInstance().SetCurrentLvLDisplay(playerLVL);
     }
 
 }
