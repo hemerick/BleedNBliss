@@ -9,6 +9,7 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         target = Player.GetInstance().gameObject;
+        transform.position = new Vector3(SpawnPoint.GetInstance().transform.position.x, SpawnPoint.GetInstance().transform.position.y, SpawnPoint.GetInstance().transform.position.z - 5);
     }
 
     private void FixedUpdate()

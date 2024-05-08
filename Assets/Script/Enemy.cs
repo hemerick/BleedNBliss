@@ -5,7 +5,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor.UI;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IPoolable
+public class Enemy : MonoBehaviour, IPoolable, IDealDamage
 {
     //VARIABLES
     [SerializeField] private GameObject experiencePrefab;
@@ -49,16 +49,14 @@ public class Enemy : MonoBehaviour, IPoolable
         }
     }
 
-
     //VÉRIFIE LES COLLISIONS
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //SI LA COLLISION EST UN PROJECTILE
-        if (collision.gameObject.CompareTag("Projectile"))
-        {
-            TakeDamage(1f);                                    // À CHANGER !!!!!!!! ---> WEAPON INFLICT DAMAGE
-        }
-
+        
+    }
+    public void InflictDamage(float damage)
+    {
+        TakeDamage(damage);
     }
 
     //APPLIQUE X DÉGATS
@@ -159,4 +157,5 @@ public class Enemy : MonoBehaviour, IPoolable
         Vector2 randomDirection = UnityEngine.Random.insideUnitCircle.normalized * .25f;
         return new Vector3(transform.position.x + randomDirection.x, transform.position.y + randomDirection.y);
     }
+
 }

@@ -9,6 +9,7 @@ public class SoundPlayer : MonoBehaviour
     [SerializeField] private AudioSource deathAudio;
     [SerializeField] private AudioSource expAudio;
     [SerializeField] private AudioSource hurtAudio;
+    [SerializeField] private AudioSource levelUpAudio;
 
     float initialPitch;
 
@@ -50,5 +51,10 @@ public class SoundPlayer : MonoBehaviour
     {
         hurtAudio.pitch = 0.85f;
         hurtAudio.Play();
+    }
+
+    public void PlayLevelUpAudio()
+    {
+        levelUpAudio.Play();
     }
 }

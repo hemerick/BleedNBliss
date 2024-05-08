@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   experiencePrefab: {fileID: 3409999097752316731, guid: adb831bbcf1534144b44ee1589bf30ee, type: 3}
   moveSpeed: 4
-  healthPoint: 1
+  maxHealthPoint: 2
   experienceDrop: 16
 --- !u!61 &4849285096531509505
 BoxCollider2D:

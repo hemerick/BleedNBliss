@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour, IPoolable
+public interface IDealDamage
+{
+    void InflictDamage(float damage);
+}
+
+public class Projectile : MonoBehaviour, IPoolable, IDamage
 {
     //private float damage;
     private float rotationSpeed = 575f;
     float lifetime = 0.4f;
+    float damage;
 
     Vector3 movement;
 
@@ -25,11 +31,35 @@ public class Projectile : MonoBehaviour, IPoolable
         {
             gameObject.SetActive(false);
         }
-        //Mouvement
-        transform.position += movement * 12.5f * Time.deltaTime;
 
-        //Rotation sur lui-même
-        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+        Movement();
+        
     }
 
+
+    void Movement()
+    {
+        //Mouvement
+        transform.position += 12.5f * Time.deltaTime * movement;
+
+        //Rotation sur lui-même
+        transform.Rotate(rotationSpeed * Time.deltaTime * Vector3.forward);
+    }
+
+    public void OnDamageChanged(float newDamage)
+    {
+        damage = newDamage;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Enemy"))
+        {
+            var hittedEnemy = collision.GetComponent<IDealDamage>();
+            if(hittedEnemy!= null ) 
+            {
+                hittedEnemy.InflictDamage(damage);
+            }
+        }
+    }
 }

@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   experiencePrefab: {fileID: 3409999097752316731, guid: adb831bbcf1534144b44ee1589bf30ee, type: 3}
   moveSpeed: 0.5
-  healthPoint: 4
+  maxHealthPoint: 10
   experienceDrop: 32
 --- !u!212 &8573347400875457698
 SpriteRenderer:

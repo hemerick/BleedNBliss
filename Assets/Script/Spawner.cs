@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<SpawnInfo> spawnInfos; //Liste des informations du monstre à faire spawn
     [SerializeField] private GameObject defaultEnemy;
     [SerializeField] private float spawnRadius = 10f;
-    [SerializeField] public int spawnAmount = 3;
+    public int spawnAmount = 3;
     public int newSpawnAmount = 3;
 
     private static Spawner instance;
@@ -85,6 +85,6 @@ public class Spawner : MonoBehaviour
     {
         Vector3 playerPosition = Player.GetInstance().transform.position;
         Vector2 randomDirection = UnityEngine.Random.insideUnitCircle.normalized * spawnRadius;
-        return new Vector3(playerPosition.x + randomDirection.x, playerPosition.z + randomDirection.y);
+        return new Vector3(playerPosition.x + randomDirection.x, playerPosition.y + randomDirection.y);
     }
 }

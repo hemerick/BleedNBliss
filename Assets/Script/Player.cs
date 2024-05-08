@@ -5,6 +5,11 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Animations;
 
+public interface IDamage
+{
+    void OnDamageChanged(float damage);
+}
+
 public class Player : MonoBehaviour, IExperienceObserver
 {
     // VARIABLES
@@ -17,11 +22,11 @@ public class Player : MonoBehaviour, IExperienceObserver
 
     public static Player GetInstance() => instance;
 
+    //PLAYER STATS
     private float moveSpeed = 5f;
     private float attackSpeed = 2f;
-    private float attackDamage;
+    private float attackDamage = 1f;
     private int maxHealthPoint = 10;
-    private int healthPoint = 10;
     private int projectileCount = 1;
 
     public int playerLVL = 1;
@@ -29,8 +34,39 @@ public class Player : MonoBehaviour, IExperienceObserver
     public int RequiredXp = 8;
 
     public bool isDead = false;
+    private int healthPoint = 10;
     float AttackCooldown = 2;
     float currentAttackCooldown;
+
+    private List<IDamage> damageObserver = new();
+
+
+    //OBSERVER
+    public void RegisterDamage(IDamage observer)
+    {
+        if (!damageObserver.Contains(observer)) 
+        {
+            damageObserver.Add(observer);
+            observer.OnDamageChanged(attackDamage);
+        }
+    }
+
+    public void UnRegisterDamage(IDamage observer) 
+    {
+        if(damageObserver.Contains(observer)) 
+        {
+            damageObserver.Remove(observer);
+        }
+    }
+
+    private void NotifyDamageObservers()
+    {
+        foreach (var observer in damageObserver) 
+        {
+            observer.OnDamageChanged(attackDamage);
+        }
+    }
+
 
     private void Awake()
     {
@@ -104,6 +140,7 @@ public class Player : MonoBehaviour, IExperienceObserver
         scythe.SetActive(true);
         scythe.GetComponent<IPoolable>().Reset();
 
+        RegisterDamage(scythe.GetComponent<Projectile>());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -176,6 +213,7 @@ public class Player : MonoBehaviour, IExperienceObserver
 
         if (playerXP >= RequiredXp)
         {
+            SoundPlayer.GetInstance().PlayLevelUpAudio();
             playerXP -= RequiredXp;
             RequiredXp *= 2;
             LevelUp();
@@ -189,6 +227,8 @@ public class Player : MonoBehaviour, IExperienceObserver
         healthPoint += 1 * (playerLVL/3);
         attackSpeed += .5f;
         moveSpeed += .1f;
+        attackDamage += .5f;
+        NotifyDamageObservers();
         playerLVL++;
         projectileCount = playerLVL/2;
         GameManager.GetInstance().SetPlayerHPDisplay(healthPoint, maxHealthPoint);
