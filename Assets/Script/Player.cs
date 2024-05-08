@@ -146,13 +146,17 @@ public class Player : MonoBehaviour, IExperienceObserver
             isDead = true;
 
             SoundPlayer.GetInstance().PlayFinalDamageAudio();
+            StopCoroutine(FlashRed());
 
             Death();
         }
         else
         {
             SoundPlayer.GetInstance().PlayDamageAudio();
-            StartCoroutine(FlashRed());
+            if(isActiveAndEnabled) 
+            {
+                StartCoroutine(FlashRed());
+            }
         }
     }
 
@@ -164,11 +168,12 @@ public class Player : MonoBehaviour, IExperienceObserver
 
     public void Respawn()
     {
-        gameObject.SetActive(true);
         isDead= false;
         healthPoint = 10f;
         playerXP = 0;
-
+        ExperienceBar.GetInstance().SetExperience(playerXP);
+        sprite.color = Color.white;
+        gameObject.SetActive(true);
     }
 
     private IEnumerator FlashRed()

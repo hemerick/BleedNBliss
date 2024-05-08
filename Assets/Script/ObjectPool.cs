@@ -97,4 +97,15 @@ public class ObjectPool : MonoBehaviour
         */
     }
 
+    public void DisableAllPoolObject() 
+    {
+        foreach (var pool in pools.Values) 
+        {
+            foreach (GameObject obj in pool)
+            {
+                obj.SetActive(false);
+            }
+        }
+    }
+
 }

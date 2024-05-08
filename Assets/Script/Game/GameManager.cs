@@ -44,9 +44,12 @@ public class GameManager : MonoBehaviour
 
     private void RestartGame()
     {
+        ObjectPool.GetInstance().DisableAllPoolObject();
         Player.GetInstance().Respawn();
         ToggleUI(gameOverUI, false);
         ToggleUI(playerUI, true);
+        Spawner.GetInstance().spawnAmount = 3;
+        Spawner.GetInstance().SpawnEnemy();
     }
 
     private void QuitGame()
