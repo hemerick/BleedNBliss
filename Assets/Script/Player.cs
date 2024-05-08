@@ -20,9 +20,12 @@ public class Player : MonoBehaviour, IExperienceObserver
     private float moveSpeed = 5f;
     private float attackSpeed = 2f;
     private float attackDamage;
+    private float maxHealthPoint = 10f;
     private float healthPoint = 10f;
 
+    public int playerLVL = 1;
     public int playerXP = 0;
+    public int RequiredXp = 8;
 
     public bool isDead= false;
     float AttackCooldown = 2;
@@ -169,9 +172,11 @@ public class Player : MonoBehaviour, IExperienceObserver
     public void Respawn()
     {
         isDead= false;
-        healthPoint = 10f;
+        healthPoint = maxHealthPoint;
         playerXP = 0;
-        ExperienceBar.GetInstance().SetExperience(playerXP);
+        RequiredXp= 8;
+        playerLVL= 1;
+        ExperienceBar.GetInstance().SetExperience(playerXP, RequiredXp);
         sprite.color = Color.white;
         gameObject.SetActive(true);
     }
@@ -183,12 +188,28 @@ public class Player : MonoBehaviour, IExperienceObserver
         sprite.color = Color.white;
     }
 
-    public void GainExperience(int xpValue)
+    public void GainExperience(int xpValue)                 // <----------- BUG HERE (XP GAIN IS ALWAYS 1 FOR SOME REASONS)
     {
-        Debug.Log("EXP RECEIVED : " + xpValue);
+        //Debug.Log("EXP RECEIVED : " + xpValue);
         playerXP += xpValue;
-        Debug.Log("PLAYER XP : " + playerXP);
+        //Debug.Log("PLAYER XP : " + playerXP);
 
-        ExperienceBar.GetInstance().SetExperience(playerXP);
+        if(playerXP >= RequiredXp) 
+        {
+            playerXP -= RequiredXp;
+            RequiredXp *= 2;
+            LevelUp();
+        }
+        ExperienceBar.GetInstance().SetExperience(playerXP, RequiredXp);
     }
+
+    private void LevelUp() 
+    {
+        maxHealthPoint += 5;
+        attackSpeed += .25f;
+        moveSpeed += .1f;
+        playerLVL++;
+        Debug.Log("LEVEL : " + playerLVL );
+    }
+
 }

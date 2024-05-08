@@ -17,9 +17,9 @@ public class ExperienceBar : MonoBehaviour
         instance = this;
     }
 
-    public void SetExperience(int experience) 
+    public void SetExperience(int experience, int maxExp) 
     {
-        expSlider.maxValue = maxExpValue;
+        expSlider.maxValue = maxExp;
         expSlider.value = experience;
     }
 }

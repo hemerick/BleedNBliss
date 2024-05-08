@@ -342,19 +342,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolsInfo:
   - objectToPool: {fileID: 973102459503394181, guid: 0ae158527eb38fd45bde0eb495b593b6, type: 3}
-    poolCount: 20
+    poolCount: 10
     currentIndex: 0
   - objectToPool: {fileID: 6299463800855934744, guid: d8285cc656bf27c4b8563bfe9491f941, type: 3}
-    poolCount: 300
+    poolCount: 200
     currentIndex: 0
   - objectToPool: {fileID: 6226008617931235186, guid: 8d54b0677313d28448e67ba82e043f8e, type: 3}
     poolCount: 50
     currentIndex: 0
   - objectToPool: {fileID: 3409999097752316731, guid: adb831bbcf1534144b44ee1589bf30ee, type: 3}
-    poolCount: 500
+    poolCount: 300
     currentIndex: 0
   - objectToPool: {fileID: 2435962979087170902, guid: 1db98753bf2212a448fe146fd59fc38b, type: 3}
-    poolCount: 300
+    poolCount: 100
     currentIndex: 0
 --- !u!4 &195227810
 Transform:
@@ -17936,6 +17936,7 @@ MonoBehaviour:
   defaultEnemy: {fileID: 6299463800855934744, guid: d8285cc656bf27c4b8563bfe9491f941, type: 3}
   spawnRadius: 5
   spawnAmount: 3
+  newSpawnAmount: 3
 --- !u!1 &1490955729
 GameObject:
   m_ObjectHideFlags: 0
@@ -18933,6 +18934,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 408744047926386169, guid: a9ddc30c2fea4774a852ec4f982af61a, type: 3}
+      propertyPath: playerLVL
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 408744047926386169, guid: a9ddc30c2fea4774a852ec4f982af61a, type: 3}
+      propertyPath: RequiredXp
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1980297740026237876, guid: a9ddc30c2fea4774a852ec4f982af61a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -19004,7 +19013,6 @@ SceneRoots:
   - {fileID: 1085681067}
   - {fileID: 1794970893}
   - {fileID: 850446922}
-  - {fileID: 1723215668}
   - {fileID: 811553951}
   - {fileID: 713034811}
   - {fileID: 1152619723}
@@ -19015,3 +19023,4 @@ SceneRoots:
   - {fileID: 1244397585}
   - {fileID: 907714922}
   - {fileID: 525956313}
+  - {fileID: 1723215668}

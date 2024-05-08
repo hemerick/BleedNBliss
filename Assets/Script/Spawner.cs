@@ -15,7 +15,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] private List<SpawnInfo> spawnInfos; //Liste des informations du monstre à faire spawn
     [SerializeField] private GameObject defaultEnemy;
     [SerializeField] private float spawnRadius = 10f;
-    public int spawnAmount = 3;
+    [SerializeField] public int spawnAmount = 3;
+    public int newSpawnAmount = 3;
 
     private static Spawner instance;
     
@@ -49,7 +50,7 @@ public class Spawner : MonoBehaviour
     {
         while (!Player.GetInstance().isDead)
         {
-            for (int i = 0; i < spawnAmount; i++)
+            for (int i = 0; i < newSpawnAmount; i++)
             {
                 GameObject enemy = ObjectPool.GetInstance().GetPooledObject(SelectEnemyToSpawn());
                 Vector3 spawnPosition = RandomPositionAroundPlayer();
@@ -58,9 +59,8 @@ public class Spawner : MonoBehaviour
                 enemy.GetComponent<IPoolable>().Reset();
                 enemy.SetActive(true);
             }
-                yield return new WaitForSeconds(7);
-            spawnAmount += (spawnAmount/10);
-            spawnAmount++;
+                yield return new WaitForSeconds(5);
+            newSpawnAmount = Player.GetInstance().playerLVL * spawnAmount/2;
         }
     }
 

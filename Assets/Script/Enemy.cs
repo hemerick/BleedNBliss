@@ -10,9 +10,10 @@ public class Enemy : MonoBehaviour, IPoolable
     //VARIABLES
     [SerializeField] private GameObject experiencePrefab;
     [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float healthPoint = 3f;
+    [SerializeField] private float maxHealthPoint;
     [SerializeField] private int experienceDrop;
 
+    private float healthPoint;
     private bool isDead = false;
 
     //CONSTANTES
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public void Reset()
     {
-        healthPoint = 3f; //      <---  À CHANGER!!!!!
+        healthPoint = maxHealthPoint;
         isDead = false;
     }
 
