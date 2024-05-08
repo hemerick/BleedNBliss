@@ -21,7 +21,8 @@ public class Player : MonoBehaviour, IExperienceObserver
     private float attackSpeed = 2f;
     private float attackDamage;
     private float healthPoint = 10f;
-    private int playerXP = 0;
+
+    public int playerXP = 0;
 
 
     float AttackCooldown = 2;
@@ -156,5 +157,7 @@ public class Player : MonoBehaviour, IExperienceObserver
         Debug.Log("EXP RECEIVED : " + xpValue);
         playerXP += xpValue;
         Debug.Log("PLAYER XP : " + playerXP);
+
+        ExperienceBar.GetInstance().SetExperience(playerXP);
     }
 }
