@@ -15,19 +15,20 @@ public class Player : MonoBehaviour, IExperienceObserver
 
     private static Player instance;
 
-    public static Player GetInstance() => instance; 
+    public static Player GetInstance() => instance;
 
     private float moveSpeed = 5f;
     private float attackSpeed = 2f;
     private float attackDamage;
     private float maxHealthPoint = 10f;
     private float healthPoint = 10f;
+    private int projectileCount = 1;
 
     public int playerLVL = 1;
     public int playerXP = 0;
     public int RequiredXp = 8;
 
-    public bool isDead= false;
+    public bool isDead = false;
     float AttackCooldown = 2;
     float currentAttackCooldown;
 
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour, IExperienceObserver
     {
         if (currentAttackCooldown <= 0 && targets.Count > 0)
         {
-            AttackClosestEnemy();
+            StartCoroutine(AttackSequence());
             currentAttackCooldown = AttackCooldown;
         }
         else
@@ -64,6 +65,17 @@ public class Player : MonoBehaviour, IExperienceObserver
         rb.velocity = new Vector2(horizontalInput, verticalInput) * moveSpeed;
 
     }
+
+    private IEnumerator AttackSequence() 
+    {
+        for (int i = 0; i < projectileCount; i++)
+        {
+            AttackClosestEnemy();
+
+            yield return new WaitForSeconds(.085f);
+        }
+    }
+
 
     //FAIT APPARAITRE UN PROJECTILE ORIENTÉ DANS LA DIRECTION DE L'ENEMY LE PLUS PROCHE
     private void AttackClosestEnemy()
@@ -134,7 +146,7 @@ public class Player : MonoBehaviour, IExperienceObserver
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             TakeDamage(1);
         }
@@ -156,7 +168,7 @@ public class Player : MonoBehaviour, IExperienceObserver
         else
         {
             SoundPlayer.GetInstance().PlayDamageAudio();
-            if(isActiveAndEnabled) 
+            if (isActiveAndEnabled)
             {
                 StartCoroutine(FlashRed());
             }
@@ -166,16 +178,18 @@ public class Player : MonoBehaviour, IExperienceObserver
     private void Death()
     {
         GameManager.GetInstance().PlayerDeath();
+        StopAllCoroutines();
         gameObject.SetActive(false);
     }
 
     public void Respawn()
     {
-        isDead= false;
+        isDead = false;
         healthPoint = maxHealthPoint;
+        projectileCount= 1;
         playerXP = 0;
-        RequiredXp= 8;
-        playerLVL= 1;
+        RequiredXp = 8;
+        playerLVL = 1;
         ExperienceBar.GetInstance().SetExperience(playerXP, RequiredXp);
         sprite.color = Color.white;
         gameObject.SetActive(true);
@@ -194,7 +208,7 @@ public class Player : MonoBehaviour, IExperienceObserver
         playerXP += xpValue;
         //Debug.Log("PLAYER XP : " + playerXP);
 
-        if(playerXP >= RequiredXp) 
+        if (playerXP >= RequiredXp)
         {
             playerXP -= RequiredXp;
             RequiredXp *= 2;
@@ -203,13 +217,14 @@ public class Player : MonoBehaviour, IExperienceObserver
         ExperienceBar.GetInstance().SetExperience(playerXP, RequiredXp);
     }
 
-    private void LevelUp() 
+    private void LevelUp()
     {
         maxHealthPoint += 5;
         attackSpeed += .25f;
         moveSpeed += .1f;
         playerLVL++;
-        Debug.Log("LEVEL : " + playerLVL );
+        projectileCount = playerLVL/2;
+        Debug.Log("LEVEL : " + playerLVL);
     }
 
 }
