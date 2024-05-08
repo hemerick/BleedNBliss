@@ -47,7 +47,7 @@ public class Spawner : MonoBehaviour
 
     public IEnumerator SpawnEnemy()
     {
-        while (true)
+        while (!Player.GetInstance().isDead)
         {
             for (int i = 0; i < spawnAmount; i++)
             {

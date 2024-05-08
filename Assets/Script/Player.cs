@@ -24,7 +24,7 @@ public class Player : MonoBehaviour, IExperienceObserver
 
     public int playerXP = 0;
 
-    bool isDead= false;
+    public bool isDead= false;
     float AttackCooldown = 2;
     float currentAttackCooldown;
 
@@ -158,7 +158,17 @@ public class Player : MonoBehaviour, IExperienceObserver
 
     private void Death()
     {
-        Debug.Log("DEAD!");
+        GameManager.GetInstance().PlayerDeath();
+        gameObject.SetActive(false);
+    }
+
+    public void Respawn()
+    {
+        gameObject.SetActive(true);
+        isDead= false;
+        healthPoint = 10f;
+        playerXP = 0;
+
     }
 
     private IEnumerator FlashRed()

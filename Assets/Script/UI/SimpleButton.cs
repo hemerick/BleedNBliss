@@ -15,12 +15,12 @@ public class SimpleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        transform.localScale = transform.localScale * 1.15f;
+        transform.localScale = transform.localScale * 1.1f;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        transform.localScale = transform.localScale / 1.15f;
+        transform.localScale = transform.localScale / 1.1f;
     }
-
+    
 }
