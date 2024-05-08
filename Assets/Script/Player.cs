@@ -68,7 +68,7 @@ public class Player : MonoBehaviour, IExperienceObserver
         //DÉFINI LA CIBLE A ATTACK
         GameObject targetToAttack = ClosestTarget();
 
-        if (targetToAttack == null) { return; }
+        if (targetToAttack == null || !targetToAttack.activeInHierarchy) { return; }
 
         //CALCULE LA DIRECTION DE LA CIBLE
         Vector3 directionToTarget = targetToAttack.transform.position - transform.position;

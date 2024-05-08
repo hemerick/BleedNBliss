@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     private void RestartGame()
     {
         ObjectPool.GetInstance().DisableAllPoolObject();
+        Player.GetInstance().gameObject.transform.SetPositionAndRotation(SpawnPoint.GetInstance().transform.position, Quaternion.identity);
         Player.GetInstance().Respawn();
         ToggleUI(gameOverUI, false);
         ToggleUI(playerUI, true);
