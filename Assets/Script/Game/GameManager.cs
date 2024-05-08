@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         Player.GetInstance().Respawn();
         ToggleUI(gameOverUI, false);
         ToggleUI(playerUI, true);
-        Spawner.GetInstance().spawnAmount = 3;
+        Spawner.GetInstance().newSpawnAmount = 3;
         Spawner.GetInstance().SpawnEnemy();
     }
 
