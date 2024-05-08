@@ -9,9 +9,9 @@ public class Player : MonoBehaviour, IExperienceObserver
 {
     // VARIABLES
     [SerializeField] GameObject scythePrefab;
-    List<GameObject> targets = new();
     Rigidbody2D rb;
     SpriteRenderer sprite;
+    PlayerRange range;
 
     private static Player instance;
 
@@ -41,6 +41,7 @@ public class Player : MonoBehaviour, IExperienceObserver
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        range = GetComponentInChildren<PlayerRange>();
 
         GameManager.GetInstance().SetPlayerHPDisplay(healthPoint, maxHealthPoint);
         GameManager.GetInstance().SetPlayerXPDisplay(playerXP, RequiredXp);
@@ -49,7 +50,7 @@ public class Player : MonoBehaviour, IExperienceObserver
 
     private void Update()
     {
-        if (currentAttackCooldown <= 0 && targets.Count > 0)
+        if (currentAttackCooldown <= 0 && range.targets.Count > 0)
         {
             StartCoroutine(AttackSequence());
             currentAttackCooldown = AttackCooldown;
@@ -85,7 +86,7 @@ public class Player : MonoBehaviour, IExperienceObserver
     private void AttackClosestEnemy()
     {
         //DÉFINI LA CIBLE A ATTACK
-        GameObject targetToAttack = ClosestTarget();
+        GameObject targetToAttack = range.ClosestTarget();
 
         if (targetToAttack == null || !targetToAttack.activeInHierarchy) { return; }
 
@@ -103,49 +104,6 @@ public class Player : MonoBehaviour, IExperienceObserver
         scythe.SetActive(true);
         scythe.GetComponent<IPoolable>().Reset();
 
-    }
-
-    //DÉTERMINE L'ENEMY LE PLUS PROCHE
-    private GameObject ClosestTarget()
-    {
-        GameObject closestTarget = null;
-        float closestDistance = Mathf.Infinity;
-
-
-        //POUR CHAQUE ENEMY DANS LA LISTE DE TARGET, COMPARE LA DISTANCE
-        foreach (GameObject target in targets)
-        {
-            float distance = Vector3.Distance(transform.position, target.transform.position);
-            if (distance < closestDistance)
-            {
-                closestDistance = distance;
-                closestTarget = target;
-            }
-        }
-
-        //RETOURNE L'ENEMY LE PLUS PROCHE DU JOUEUR
-        return closestTarget;
-    }
-
-    //AJOUTE LES ENEMY IN-RANGE DANS LA LISTE DE TARGET
-    private void OnTriggerEnter2D(Collider2D trigger)
-    {
-        //VÉRIFIE SI LA COLLISION EST AVEC UN ENEMY
-        if (trigger.gameObject.CompareTag("Enemy"))
-        {
-            targets.Add(trigger.gameObject);
-        }
-
-    }
-
-    //RETIRE LES ENEMY OUT OF RANGE DE LA LISTE DE TARGET
-    private void OnTriggerExit2D(Collider2D trigger)
-    {
-        //VÉRIFIE SI LA COLLISION EST AVEC UN ENEMY
-        if (trigger.gameObject.CompareTag("Enemy"))
-        {
-            targets.Remove(trigger.gameObject);
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

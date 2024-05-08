@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour, IPoolable
         //SI LA COLLISION EST UN PROJECTILE
         if (collision.gameObject.CompareTag("Projectile"))
         {
-            TakeDamage(1f);
+            TakeDamage(1f);                                    // À CHANGER !!!!!!!! ---> WEAPON INFLICT DAMAGE
         }
 
     }

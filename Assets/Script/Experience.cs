@@ -14,7 +14,7 @@ public class Experience : MonoBehaviour, IPoolable
     //VARIABLES
     private int xpValue;
     private float currentLifetime = 10f;
-    private bool isInRange = false;
+    private float range = 2.5f;
 
     //CONSTANTES
     [SerializeField] private const float TOTAL_LIFETIME = 10f;
@@ -23,6 +23,7 @@ public class Experience : MonoBehaviour, IPoolable
     //COMPONENTS
     SpriteRenderer sprite;
     Rigidbody2D rb;
+    GameObject player;
 
     private IExperienceObserver observer;
 
@@ -31,6 +32,7 @@ public class Experience : MonoBehaviour, IPoolable
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         observer = Player.GetInstance();
+        player = Player.GetInstance().gameObject;
     }
 
     public void Reset()
@@ -68,7 +70,7 @@ public class Experience : MonoBehaviour, IPoolable
             gameObject.SetActive(false);
         }
 
-        if (isInRange)
+        if (InRange())
         {
             MoveTowardPlayer();
         }
@@ -82,26 +84,20 @@ public class Experience : MonoBehaviour, IPoolable
     {
         if (collision.CompareTag("Player"))
         {
-            isInRange = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            isInRange = false;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
             SoundPlayer.GetInstance().PlayCollectingAudio();
             NotifyObserver();
             gameObject.SetActive(false);
         }
+    }
+
+    private bool InRange() 
+    {
+        float distanceBetweenPlayer = Vector3.Distance(transform.position, player.transform.position);
+        if(distanceBetweenPlayer <= range)
+        {
+            return true;
+        }
+        else { return false; }
     }
 
     private void MoveTowardPlayer()
