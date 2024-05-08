@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IPoolable
@@ -35,7 +36,7 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public void Reset()
     {
-        healthPoint = 3f;
+        healthPoint = 3f; //      <---  À CHANGER!!!!!
         isDead = false;
     }
 
@@ -59,7 +60,7 @@ public class Enemy : MonoBehaviour, IPoolable
 
     }
 
-    //APPLIQUE X DÉGATS A MERMAN
+    //APPLIQUE X DÉGATS
     private void TakeDamage(float damage)
     {
         healthPoint -= damage;
@@ -69,13 +70,18 @@ public class Enemy : MonoBehaviour, IPoolable
             isDead = true;
 
             SoundPlayer.GetInstance().PlayDeathAudio();
+            StopCoroutine(FlashRed());
 
             Death();
         }
         else
         {
             SoundPlayer.GetInstance().PlayHurtAudio();
-            StartCoroutine(FlashRed());
+            if(isActiveAndEnabled) 
+            {
+                StartCoroutine(FlashRed());
+            }
+            
         }
     }
 

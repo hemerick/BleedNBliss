@@ -8,6 +8,7 @@ public class SoundPlayer : MonoBehaviour
 
     [SerializeField] private AudioSource deathAudio;
     [SerializeField] private AudioSource expAudio;
+    [SerializeField] private AudioSource hurtAudio;
 
     float initialPitch;
 
@@ -37,5 +38,17 @@ public class SoundPlayer : MonoBehaviour
     public void PlayCollectingAudio() 
     {
         expAudio.Play();
+    }
+
+    public void PlayDamageAudio()
+    {
+        hurtAudio.pitch = 1f;
+        hurtAudio.Play();
+    }
+
+    public void PlayFinalDamageAudio()
+    {
+        hurtAudio.pitch = 0.85f;
+        hurtAudio.Play();
     }
 }

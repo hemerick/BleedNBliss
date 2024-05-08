@@ -24,7 +24,7 @@ public class Player : MonoBehaviour, IExperienceObserver
 
     public int playerXP = 0;
 
-
+    bool isDead= false;
     float AttackCooldown = 2;
     float currentAttackCooldown;
 
@@ -131,18 +131,34 @@ public class Player : MonoBehaviour, IExperienceObserver
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy")) 
+        if(collision.gameObject.CompareTag("Enemy"))
         {
-            TakeDamage();
+            TakeDamage(1);
         }
     }
 
-
-    private void TakeDamage()
+    private void TakeDamage(int damage)
     {
-        healthPoint--;
-        Debug.Log("HP : " + healthPoint);
-        StartCoroutine(FlashRed());
+        healthPoint -= damage;
+
+        if (healthPoint <= 0 && !isDead)
+        {
+            isDead = true;
+
+            SoundPlayer.GetInstance().PlayFinalDamageAudio();
+
+            Death();
+        }
+        else
+        {
+            SoundPlayer.GetInstance().PlayDamageAudio();
+            StartCoroutine(FlashRed());
+        }
+    }
+
+    private void Death()
+    {
+        Debug.Log("DEAD!");
     }
 
     private IEnumerator FlashRed()
