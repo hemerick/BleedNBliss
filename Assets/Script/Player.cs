@@ -10,7 +10,7 @@ public interface IDamage
     void OnDamageChanged(float damage);
 }
 
-public class Player : MonoBehaviour, IExperienceObserver
+public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer
 {
     // VARIABLES
     [SerializeField] GameObject scythePrefab;
@@ -143,14 +143,6 @@ public class Player : MonoBehaviour, IExperienceObserver
         RegisterDamage(scythe.GetComponent<Projectile>());
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            TakeDamage(1);
-        }
-    }
-
     private void TakeDamage(int damage)
     {
         healthPoint -= damage;
@@ -235,4 +227,8 @@ public class Player : MonoBehaviour, IExperienceObserver
         GameManager.GetInstance().SetCurrentLvLDisplay(playerLVL);
     }
 
+    public void AttackPlayer(int damage)
+    {
+        TakeDamage(damage);
+    }
 }

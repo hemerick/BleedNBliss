@@ -104,6 +104,7 @@ MonoBehaviour:
   moveSpeed: 4
   maxHealthPoint: 2
   experienceDrop: 16
+  attackDamage: 4
 --- !u!61 &4849285096531509505
 BoxCollider2D:
   m_ObjectHideFlags: 0

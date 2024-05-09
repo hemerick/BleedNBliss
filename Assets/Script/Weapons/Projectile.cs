@@ -27,13 +27,13 @@ public class Projectile : MonoBehaviour, IPoolable, IDamage
     void Update()
     {
         lifetime -= Time.deltaTime;
-        if(lifetime < 0 )
+        if (lifetime < 0)
         {
             gameObject.SetActive(false);
         }
 
         Movement();
-        
+
     }
 
 
@@ -53,13 +53,9 @@ public class Projectile : MonoBehaviour, IPoolable, IDamage
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy"))
-        {
-            var hittedEnemy = collision.GetComponent<IDealDamage>();
-            if(hittedEnemy!= null ) 
-            {
-                hittedEnemy.InflictDamage(damage);
-            }
-        }
+
+        var hittedTarget = collision.GetComponent<IDealDamage>();
+        hittedTarget?.InflictDamage(damage);
+
     }
 }

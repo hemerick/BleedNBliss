@@ -5,6 +5,11 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor.UI;
 using UnityEngine;
 
+public interface IAttackPlayer 
+{
+    public void AttackPlayer(int damage);
+}
+
 public class Enemy : MonoBehaviour, IPoolable, IDealDamage
 {
     //VARIABLES
@@ -12,6 +17,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDealDamage
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float maxHealthPoint;
     [SerializeField] private int experienceDrop;
+    [SerializeField] private int attackDamage;
 
     private float healthPoint;
     private bool isDead = false;
@@ -57,7 +63,8 @@ public class Enemy : MonoBehaviour, IPoolable, IDealDamage
     //VÉRIFIE LES COLLISIONS
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        var hittedTarget = collision.GetComponent<IAttackPlayer>();
+        hittedTarget?.AttackPlayer(attackDamage);
     }
     public void InflictDamage(float damage)
     {

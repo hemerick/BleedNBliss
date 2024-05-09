@@ -124,6 +124,7 @@ MonoBehaviour:
   moveSpeed: 0.5
   maxHealthPoint: 50
   experienceDrop: 55
+  attackDamage: 12
 --- !u!212 &8573347400875457698
 SpriteRenderer:
   m_ObjectHideFlags: 0
