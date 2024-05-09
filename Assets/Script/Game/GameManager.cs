@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         ToggleUI(gameOverUI, false);
         ToggleUI(playerUI, true);
         Spawner.GetInstance().newSpawnAmount = 3;
-        Spawner.GetInstance().SpawnEnemy();
+        Spawner.GetInstance().StartWave();
         SoundPlayer.GetInstance().StartMusic();
     }
 

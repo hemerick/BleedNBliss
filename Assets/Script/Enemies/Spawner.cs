@@ -41,10 +41,14 @@ public class Spawner : MonoBehaviour
             Debug.LogWarning("TOTAL SPAWN CHANCE EXCEED 100%, SOME ENEMY WONT SPAWN | TOTALPERCENTAGE : " + totalPercentage);
         }
 
+        StartWave();
+    }
+    
+    public void StartWave()
+    {
         //Coroutine est une méthode qui peut inclure des délais de temps
         StartCoroutine(SpawnEnemy());
     }
-    
     
     public IEnumerator SpawnEnemy()
     {
