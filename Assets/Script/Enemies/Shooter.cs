@@ -3,16 +3,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface IUpdateProjectileStats
+{
+    void SetProjectileStats(float damage);
+}
+
 public class Shooter : Enemy
 {
     //VARIABLES
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float range;
     [SerializeField] private int projectileCount = 3;
-    private float attackSpeed = .75f;
+    [SerializeField] private float attackSpeed = 1;
 
-    private float attackCooldown = 3;
+    private float attackCooldown = 2;
     private float currentAttackCooldown = 0f;
+
+
+    private List<IUpdateProjectileStats> damageObserver = new();
+
+
+    //OBSERVER
+    public void RegisterDamage(IUpdateProjectileStats observer)
+    {
+        if (!damageObserver.Contains(observer))
+        {
+            damageObserver.Add(observer);
+            observer.SetProjectileStats(attackDamage);
+        }
+    }
+
+    public void UnRegisterDamage(IUpdateProjectileStats observer)
+    {
+        if (damageObserver.Contains(observer))
+        {
+            damageObserver.Remove(observer);
+        }
+    }
+
+    private void NotifyDamageObservers()
+    {
+        foreach (var observer in damageObserver)
+        {
+            observer.SetProjectileStats(attackDamage);
+        }
+    }
+
 
     protected override void Start()
     {
@@ -83,11 +119,13 @@ public class Shooter : Enemy
 
         //PREND UN PROJECTILE DU POOL ET L'ORIENTE VERS LA CIBLE
         GameObject projectile = ObjectPool.GetInstance().GetPooledObject(projectilePrefab);
+        projectile.GetComponent<Projectile>().source = ProjectileSource.Enemy;
         projectile.transform.SetPositionAndRotation(transform.position, rotation);
         projectile.SetActive(true);
         projectile.GetComponent<IPoolable>().Reset();
 
-    }
+        RegisterDamage(projectile.GetComponent<WoodenBall>());
 
+    }
 
 }

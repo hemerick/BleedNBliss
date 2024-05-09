@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6618028165927372902}
   - component: {fileID: 1100024880623499303}
   - component: {fileID: 1817274482725820538}
-  - component: {fileID: 3295694348407692188}
+  - component: {fileID: 8492558049328815170}
   m_Layer: 0
   m_Name: WoodenBall
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.21875
---- !u!114 &3295694348407692188
+--- !u!114 &8492558049328815170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,6 +130,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2094364780193411769}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b052761569d218b4d978aae29d28db7f, type: 3}
+  m_Script: {fileID: 11500000, guid: b144d11dad72af14287aad97970da94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+  lifetime: 1
+  source: 1

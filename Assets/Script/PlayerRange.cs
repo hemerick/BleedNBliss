@@ -7,6 +7,11 @@ public class PlayerRange : MonoBehaviour
 {
     public List<GameObject> targets = new();
 
+    private void Update()
+    {
+        targets.RemoveAll(target => target == null || !target.activeInHierarchy);
+    }
+
     private void OnTriggerEnter2D(Collider2D trigger)
     {
         //VÉRIFIE SI LA COLLISION EST AVEC UN ENEMY
@@ -36,6 +41,8 @@ public class PlayerRange : MonoBehaviour
         //POUR CHAQUE ENEMY DANS LA LISTE DE TARGET, COMPARE LA DISTANCE
         foreach (GameObject target in targets)
         {
+            if(!target.activeInHierarchy) { continue; }
+
             float distance = Vector3.Distance(transform.position, target.transform.position);
             if (distance < closestDistance)
             {

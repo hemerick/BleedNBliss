@@ -10,7 +10,7 @@ public interface IAttackPlayer
     public void AttackPlayer(int damage);
 }
 
-public abstract class Enemy : MonoBehaviour, IPoolable, IDealDamage
+public abstract class Enemy : MonoBehaviour, IPoolable, IWeaponDamage
 {
     //VARIABLES
     [SerializeField] protected GameObject experiencePrefab;
@@ -66,7 +66,7 @@ public abstract class Enemy : MonoBehaviour, IPoolable, IDealDamage
         var hittedTarget = collision.GetComponent<IAttackPlayer>();
         hittedTarget?.AttackPlayer(attackDamage);
     }
-    public void InflictDamage(float damage)
+    public void ProjectileInflictDamage(float damage)
     {
         TakeDamage(damage);
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7558619447584605087}
   - component: {fileID: 3998968830899325838}
-  - component: {fileID: -3637986824556145221}
+  - component: {fileID: 1259267520760075956}
   m_Layer: 0
   m_Name: Scythe
   m_TagString: Projectile
@@ -69,7 +69,7 @@ CircleCollider2D:
   m_Offset: {x: -0.058738828, y: 0}
   serializedVersion: 2
   m_Radius: 0.44126117
---- !u!114 &-3637986824556145221
+--- !u!114 &1259267520760075956
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -78,9 +78,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 973102459503394181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b052761569d218b4d978aae29d28db7f, type: 3}
+  m_Script: {fileID: 11500000, guid: f5b094a26aec1724e9d7581f224dfcc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 10
+  source: 0
 --- !u!1 &1808866725389228544
 GameObject:
   m_ObjectHideFlags: 0

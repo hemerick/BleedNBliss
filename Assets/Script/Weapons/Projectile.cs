@@ -1,69 +1,61 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IDealDamage
+public interface IWeaponDamage
 {
-    void InflictDamage(float damage);
+    void ProjectileInflictDamage(float damage);
 }
 
-public class Projectile : MonoBehaviour, IPoolable, IDamage
+public enum ProjectileSource 
 {
-    //private float damage;
-    private float rotationSpeed = 575f;
-    float lifetime = 0.4f;
-    float damage = 1;
+    Player,
+    Enemy
+}
 
-    Vector3 movement;
+public abstract class Projectile : MonoBehaviour, IPoolable
+{
+    [SerializeField] protected float moveSpeed;
+    [SerializeField] protected float lifetime = 0.4f; //MAKE THIS == TO RANGE VALUE
+    public ProjectileSource source;
+    protected float currentLifetime = 0.4f;
+    protected float damage;
+
+    protected Vector3 movement;
 
     public void Reset()
     {
-        lifetime = 0.4f;
-        //movement = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z) * Vector3.right;
+        CustomReset();
         movement = transform.rotation * Vector3.right;
     }
 
-    // Update is called once per frame
+    protected abstract void CustomReset();
+
     void Update()
     {
-        lifetime -= Time.deltaTime;
-        if (lifetime < 0)
+        currentLifetime -= Time.deltaTime;
+        if (currentLifetime < 0)
         {
             gameObject.SetActive(false);
         }
-
         Movement();
-
     }
-
-
-    void Movement()
-    {
-        //Mouvement
-        transform.position += 12.5f * Time.deltaTime * movement;
-
-        //Rotation sur lui-même
-        transform.Rotate(rotationSpeed * Time.deltaTime * Vector3.forward);
-    }
-
-    public void OnDamageChanged(float newDamage)
-    {
-        damage = newDamage;
-    }
+    protected abstract void Movement();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy"))
+        if(source == ProjectileSource.Player && collision.CompareTag("Enemy"))
         {
-            var hittedTarget = collision.GetComponent<IDealDamage>();
-            hittedTarget?.InflictDamage(damage);
-
+            var hittedTarget = collision.GetComponent<IWeaponDamage>();
+            hittedTarget?.ProjectileInflictDamage(damage);
+            //gameObject.SetActive(false)
         }
-
-        if(collision.CompareTag("Player"))
+        else if(source == ProjectileSource.Enemy && collision.CompareTag("Player"))
         {
-            Debug.Log("Player hit!");
+            var player = collision.GetComponent<IWeaponDamage>();
+            player?.ProjectileInflictDamage(damage);
+            gameObject.SetActive(false);
         }
-
     }
 }

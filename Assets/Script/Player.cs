@@ -1,16 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public interface IDamage
+public interface IUpdateWeaponStats
 {
     void OnDamageChanged(float damage);
 }
 
-public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer
+public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer, IWeaponDamage
 {
     // VARIABLES
     [SerializeField] GameObject scythePrefab;
@@ -38,11 +39,11 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer
     float AttackCooldown = 2;
     float currentAttackCooldown;
 
-    private List<IDamage> damageObserver = new();
+    private List<IUpdateWeaponStats> damageObserver = new();
 
 
     //OBSERVER
-    public void RegisterDamage(IDamage observer)
+    public void RegisterDamage(IUpdateWeaponStats observer)
     {
         if (!damageObserver.Contains(observer)) 
         {
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer
         }
     }
 
-    public void UnRegisterDamage(IDamage observer) 
+    public void UnRegisterDamage(IUpdateWeaponStats observer) 
     {
         if(damageObserver.Contains(observer)) 
         {
@@ -115,6 +116,7 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer
 
             yield return new WaitForSeconds(.095f);
         }
+        currentAttackCooldown = AttackCooldown; //RESET COOLDOWN
     }
 
 
@@ -136,11 +138,17 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer
 
         //PREND UN PROJECTILE DU POOL ET L'ORIENTE VERS LA CIBLE
         GameObject scythe = ObjectPool.GetInstance().GetPooledObject(scythePrefab);
+        if(scythe == null) 
+        {
+            Debug.LogError("FAILED TO OBTAIN SCYTHE FROM POOL");
+            return;
+        }
+        scythe.GetComponent<Projectile>().source = ProjectileSource.Player;
         scythe.transform.SetPositionAndRotation(transform.position, rotation);
         scythe.SetActive(true);
         scythe.GetComponent<IPoolable>().Reset();
 
-        RegisterDamage(scythe.GetComponent<Projectile>());
+        RegisterDamage(scythe.GetComponent<Scythe>());
     }
 
     private void TakeDamage(int damage)
@@ -197,11 +205,9 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer
         sprite.color = Color.white;
     }
 
-    public void GainExperience(int xpValue)                 // <----------- BUG HERE (XP GAIN IS ALWAYS 1 FOR SOME REASONS)
+    public void GainExperience(int xpValue)
     {
-        //Debug.Log("EXP RECEIVED : " + xpValue);
         playerXP += xpValue;
-        //Debug.Log("PLAYER XP : " + playerXP);
 
         if (playerXP >= RequiredXp)
         {
@@ -230,5 +236,11 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer
     public void AttackPlayer(int damage)
     {
         TakeDamage(damage);
-    }
+    } //RECEIVE DAMAGE FROM ENEMY
+
+    public void ProjectileInflictDamage(float damage)
+    {
+        int newDamage = Convert.ToInt32(damage);
+        TakeDamage(newDamage);
+    } //RECEIVE DAMAGE FROM PROJECTILE
 }
