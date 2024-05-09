@@ -120,12 +120,6 @@ public class Shooter : MonoBehaviour, IPoolable, IDealDamage
         rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime * 10);
     }
 
-    //VÉRIFIE LES COLLISIONS
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        var hittedTarget = collision.GetComponent<IAttackPlayer>();
-        hittedTarget?.AttackPlayer(attackDamage);
-    }
     public void InflictDamage(float damage)
     {
         TakeDamage(damage);
