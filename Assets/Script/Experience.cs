@@ -53,9 +53,12 @@ public class Experience : MonoBehaviour, IPoolable
 
     private void HandleEnemyDeath(int experienceDrop)
     {
-        xpValue = experienceDrop;
-        //Debug.Log("XP VALUE : " + xpValue);
-        SetColorByValue();
+        if(xpValue == 0) 
+        {
+            xpValue = experienceDrop;
+            //Debug.Log("XP VALUE : " + xpValue);
+            SetColorByValue();
+        }
     }
 
 
@@ -122,49 +125,36 @@ public class Experience : MonoBehaviour, IPoolable
     //OBSERVER
     private void NotifyObserver()
     {
+        if(observer != null && xpValue > 0)
+        {
+            observer.GainExperience(xpValue);
+            xpValue= 0;
+        }
+        else
+        {
+            Debug.LogError("Exp Observer not set!!!");
+        }
         //Debug.Log("XP : VALUE SENT -> " + xpValue);
-        observer.GainExperience(xpValue);
+        
     }
 
     private void SetColorByValue() 
     {
-        switch (xpValue) 
+        Color color = xpValue switch
         {
-            case 1:
-            {
-                    sprite.color = Color.white;
-            }
-            break;
+            1 => Color.white,
+            5 => Color.cyan,
+            25 => Color.magenta,
+            100 => Color.yellow,
+            500 => Color.red,
+            _ => Color.black //Default Color (Should't happend)
+        };
 
-            case 5:
-            {
-                    sprite.color = Color.blue;
-            }
-            break;
-
-            case 25:
-            {
-                    sprite.color = Color.magenta;
-            }
-            break;
-
-            case 100:
-            {
-                    sprite.color = Color.yellow;
-            }
-            break;
-
-            case 500:
-            {
-                    sprite.color = Color.red;
-            }
-            break;
-
-            default: 
-            {
-                    Debug.LogError("INCORRECT VALUE :" + xpValue);
-            }
-            break;
+        sprite.color = color;
+        if(xpValue != 500 && xpValue != 100 && xpValue != 25 && xpValue != 5 && xpValue != 1)
+        {
+            Debug.LogError("Unexpected XP Value! : " + xpValue);
         }
+
     }
 }

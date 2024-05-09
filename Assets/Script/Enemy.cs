@@ -39,6 +39,11 @@ public class Enemy : MonoBehaviour, IPoolable, IDealDamage
     {
         healthPoint = maxHealthPoint;
         isDead = false;
+
+        if(isActiveAndEnabled) 
+        {
+            sprite.color = Color.white;
+        }
     }
 
     private void FixedUpdate()
