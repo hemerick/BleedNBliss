@@ -237,6 +237,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5976186155915378428, guid: 0a2747a978c2c364ba6b5947cdaa2e69, type: 3}
+      propertyPath: experienceDrop
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976186155915378428, guid: 0a2747a978c2c364ba6b5947cdaa2e69, type: 3}
+      propertyPath: maxHealthPoint
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6053123136605910858, guid: 0a2747a978c2c364ba6b5947cdaa2e69, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

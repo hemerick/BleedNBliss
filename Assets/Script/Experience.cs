@@ -132,7 +132,7 @@ public class Experience : MonoBehaviour, IPoolable
         }
         else
         {
-            Debug.LogError("Exp Observer not set!!!");
+            Debug.LogError("Observer : " + observer + " |xpValue : " + xpValue);
         }
         //Debug.Log("XP : VALUE SENT -> " + xpValue);
         

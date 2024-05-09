@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4053805957012120192}
   - component: {fileID: 6293707543213857917}
   - component: {fileID: 7568120000086914888}
-  - component: {fileID: 7916268408536766649}
   - component: {fileID: 8573347400875457698}
   - component: {fileID: 9010480332912101676}
+  - component: {fileID: 6137701213710146937}
   m_Layer: 0
   m_Name: Monstrosity
   m_TagString: Enemy
@@ -108,23 +108,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &7916268408536766649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6226008617931235186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6d0307f6deabc4fa382ec113a3a17d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  experiencePrefab: {fileID: 3409999097752316731, guid: adb831bbcf1534144b44ee1589bf30ee, type: 3}
-  moveSpeed: 0.5
-  maxHealthPoint: 50
-  experienceDrop: 55
-  attackDamage: 12
 --- !u!212 &8573347400875457698
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -212,3 +195,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6137701213710146937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226008617931235186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8543487e118ce0a49891f71e4d1c6967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experiencePrefab: {fileID: 3409999097752316731, guid: adb831bbcf1534144b44ee1589bf30ee, type: 3}
+  maxHealthPoint: 20
+  moveSpeed: 0.5
+  attackDamage: 10
+  experienceDrop: 32

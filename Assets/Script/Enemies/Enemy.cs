@@ -10,31 +10,31 @@ public interface IAttackPlayer
     public void AttackPlayer(int damage);
 }
 
-public class Enemy : MonoBehaviour, IPoolable, IDealDamage
+public abstract class Enemy : MonoBehaviour, IPoolable, IDealDamage
 {
     //VARIABLES
-    [SerializeField] private GameObject experiencePrefab;
-    [SerializeField] private float moveSpeed = 2f;
-    [SerializeField] private float maxHealthPoint;
-    [SerializeField] private int experienceDrop;
-    [SerializeField] private int attackDamage;
+    [SerializeField] protected GameObject experiencePrefab;
+    [SerializeField] protected float maxHealthPoint;
+    [SerializeField] protected float moveSpeed = 2f;
+    [SerializeField] protected int attackDamage;
+    [SerializeField] protected int experienceDrop;
 
-    private float healthPoint;
-    private bool isDead = false;
+    protected float healthPoint;
+    protected bool isDead = false;
 
     //CONSTANTES
-    private const int EXP_DROP_CHANCE = 75;
+    protected const int EXP_DROP_CHANCE = 75;
 
     //COMPONENTS
-    private GameObject target;
-    private Rigidbody2D rb;
-    private SpriteRenderer sprite;
+    protected GameObject target;
+    protected Rigidbody2D rb;
+    protected SpriteRenderer sprite;
 
     //EVENT
     public static event Action<int> EnemyDeathEvent;
     
 
-    private void Start()
+    protected virtual void Start()
     {
         target = Player.GetInstance().gameObject;
         rb = GetComponent<Rigidbody2D>();
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDealDamage
         }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         if (!isDead)
         {
@@ -71,8 +71,8 @@ public class Enemy : MonoBehaviour, IPoolable, IDealDamage
         TakeDamage(damage);
     }
 
-    //APPLIQUE X DÉGATS
-    private void TakeDamage(float damage)
+    //RECOIT X DÉGATS
+    protected virtual void TakeDamage(float damage)
     {
         healthPoint -= damage;
 
@@ -96,32 +96,28 @@ public class Enemy : MonoBehaviour, IPoolable, IDealDamage
         }
     }
 
-    private void MoveTowardPlayer()
-    {
+    protected abstract void MoveTowardPlayer();
+    //{
 
-        Vector2 direction = (target.transform.position - transform.position).normalized;
-        rb.velocity = direction * moveSpeed;
+    //    Vector2 direction = (target.transform.position - transform.position).normalized;
+    //    rb.velocity = direction * moveSpeed;
 
-    }
+    //} 
 
-    private IEnumerator FlashRed() 
+    protected IEnumerator FlashRed() 
     {
         sprite.color = Color.red;
         yield return new WaitForSeconds(.1f);
         sprite.color = Color.white;
     }
 
-    private bool CanDropExperience(float dropPercent) 
+    protected bool CanDropExperience(float dropPercent) 
     {
         float tempDropPercent = UnityEngine.Random.Range(0, 100);
-        if (tempDropPercent <= dropPercent) 
-        {
-            return true;
-        }
-        return false;
+        return tempDropPercent <= dropPercent;
     }
 
-    private void Death()
+    protected virtual void Death()
     {
         if (CanDropExperience(EXP_DROP_CHANCE))
         {
@@ -132,7 +128,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDealDamage
     }
 
 
-    private List<int> CalculExpValue() 
+    protected List<int> CalculExpValue() 
     {
         List<int> values = new();
         int remainingExp = experienceDrop;
@@ -149,7 +145,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDealDamage
         return values;
     }
 
-    private void SpawnExp() 
+    protected void SpawnExp() 
     {
         foreach(int xpObj in CalculExpValue())
         {
@@ -164,7 +160,7 @@ public class Enemy : MonoBehaviour, IPoolable, IDealDamage
             
     }
 
-    private Vector3 RandomPositionAroundEnemy()
+    protected Vector3 RandomPositionAroundEnemy()
     {
         Vector2 randomDirection = UnityEngine.Random.insideUnitCircle.normalized * .25f;
         return new Vector3(transform.position.x + randomDirection.x, transform.position.y + randomDirection.y);

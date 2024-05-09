@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2642750187899187265}
   - component: {fileID: 8434885175270279470}
   - component: {fileID: -8701547897330036673}
-  - component: {fileID: -224344795189929758}
   - component: {fileID: 3683758999268226081}
   - component: {fileID: 8603307889862519266}
+  - component: {fileID: 4497595146688424309}
   m_Layer: 0
   m_Name: Merman
   m_TagString: Enemy
@@ -108,23 +108,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.74697113, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-224344795189929758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6299463800855934744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6d0307f6deabc4fa382ec113a3a17d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  experiencePrefab: {fileID: 3409999097752316731, guid: adb831bbcf1534144b44ee1589bf30ee, type: 3}
-  moveSpeed: 1.5
-  maxHealthPoint: 5
-  experienceDrop: 6
-  attackDamage: 2
 --- !u!212 &3683758999268226081
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -212,3 +195,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.45
+--- !u!114 &4497595146688424309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6299463800855934744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8543487e118ce0a49891f71e4d1c6967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  experiencePrefab: {fileID: 3409999097752316731, guid: adb831bbcf1534144b44ee1589bf30ee, type: 3}
+  maxHealthPoint: 5
+  moveSpeed: 2
+  attackDamage: 2
+  experienceDrop: 6
