@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour, IPoolable, IDamage
     //private float damage;
     private float rotationSpeed = 575f;
     float lifetime = 0.4f;
-    float damage;
+    float damage = 1;
 
     Vector3 movement;
 
@@ -53,9 +53,17 @@ public class Projectile : MonoBehaviour, IPoolable, IDamage
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.CompareTag("Enemy"))
+        {
+            var hittedTarget = collision.GetComponent<IDealDamage>();
+            hittedTarget?.InflictDamage(damage);
 
-        var hittedTarget = collision.GetComponent<IDealDamage>();
-        hittedTarget?.InflictDamage(damage);
+        }
+
+        if(collision.CompareTag("Player"))
+        {
+            Debug.Log("Player hit!");
+        }
 
     }
 }

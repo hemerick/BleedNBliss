@@ -1,0 +1,1563 @@
+fileFormatVersion: 2
+guid: d7b92e3a85039984a9a0479bda406256
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 145
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 532d664c55943684289a21ebb51a26e2
+      internalID: -87971643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 145
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc4bf779410ccff42af7b5e35a1a471f
+      internalID: 815308327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 145
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77acbc06dd316ee44a4ff3066d2acb38
+      internalID: -1405846684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_3
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 145
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 087df1cffa6cb1b43b9693c60def9bce
+      internalID: -805596992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_4
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 145
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c086095c390de0f49ab221b1d035707b
+      internalID: -966088721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_5
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 145
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 816301d4343118247882d1e0b4a864e9
+      internalID: -1098060141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_6
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 145
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef7acf08f58e29243a4b1d5c84c9fd90
+      internalID: -1717477690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_7
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 145
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b95454fb42aeb742adeb7d2c539c904
+      internalID: -1582864303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_8
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 145
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08d87419309d4a242a4bea1b9728ccac
+      internalID: -1420270280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_9
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 145
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b26925b902301144b95a0811b47a6ca5
+      internalID: -284757453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_10
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 145
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 162221069aa7df34090c92e8c5f37a42
+      internalID: -564836536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_11
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 145
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 723af6588af4dd048b87f5427493b920
+      internalID: 315344260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_13
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 145
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 594032d00040dcc4d8aaef2c7eb03a4d
+      internalID: 1380226679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_14
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 113
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d945a4e266df147419e3f19a33f136a1
+      internalID: 790870697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_15
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 113
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee73f59b43cad564298331d4c80d93ed
+      internalID: -305489276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_16
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 113
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0329bdb1ce520aa409e32de52e57023a
+      internalID: 310412718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_17
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 113
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb8703e4e6cbb4545bca5b66d4786247
+      internalID: 2000260689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_18
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 113
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8aa142cc771a3a4fa6257667f99bc95
+      internalID: -1376035857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_19
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 113
+        width: 22
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46bb144f69a88a244bee7f4e723953a8
+      internalID: 2116698481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_20
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 113
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23e56bf0c2325d247b01f120befa9704
+      internalID: -1552477586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_21
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 113
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee89b0474be831d48bbac24fbe123dbf
+      internalID: 1916806001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_22
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 113
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e975029bc1c825549a2b1a32fac3ea77
+      internalID: -240738416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_23
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 113
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f622a114c29d8c54eb4a953d46f34042
+      internalID: -189226691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_24
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 113
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e83f5529f8d15f4ab42b2bd8fc16179
+      internalID: -954014538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_25
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 113
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5730456a4bd9b634c8268ea2f2b557df
+      internalID: 1049942790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_26
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 80
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8c6d026631d2774c82b09c6e83768f8
+      internalID: 1171115142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_27
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 80
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab6a5349d4f681845aea9cbd3139d088
+      internalID: 1188106509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_28
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 80
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3e6d89c63c09e649a8bbd948729e2f1
+      internalID: -1725360163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_30
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 80
+        width: 20
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b260d3f6911e3f4d9b97d87c19e48fc
+      internalID: 337200183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_31
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 80
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62b438a14716cf148b0098472abf4f76
+      internalID: 172497344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_32
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 80
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b0f1004dd8a12c4ebaa058b288a62ac
+      internalID: -1715282600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_33
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 81
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70d523ba0e862a449a71a10adf233cc4
+      internalID: -822577629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_34
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 80
+        width: 21
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cc112b9cc5658546ba0f73c06e27606
+      internalID: 792053029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_35
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 80
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95711f597c149e141bd8bfcb1610287e
+      internalID: -1910497394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_36
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 80
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90945ae107afe7b4a879ae975985e5dd
+      internalID: 543027034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_37
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 80
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49fd8758d6976ae449b249818fc46501
+      internalID: -77666123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_38
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 49
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b839a119738a07e4b921cfe72c5b1f6b
+      internalID: -2057730395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_39
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 49
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0db8c94ebb6f594794c0db048d82ae0
+      internalID: -1009201673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_40
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 49
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af9f7f58978873547bcdc1d2ae849517
+      internalID: -2042609422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_41
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 49
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ff71d8cf47e6f74ea71bf19c6f05207
+      internalID: -1167243179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_42
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 49
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a89fe88337af6f348b36f90bef84b9e8
+      internalID: -1596692033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_43
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 49
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10be1f72e1e64b04593a93aeba30fc09
+      internalID: 500816465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_44
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 49
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8487a8e691ab3e54fa9b7cab18218151
+      internalID: 177618219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_45
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 49
+        width: 25
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7273d5a8161df674788f82b85af1a17e
+      internalID: 172797940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_46
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 49
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b379df9c57039834bad9a4dba20dbe1a
+      internalID: 1485512639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_47
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 17
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c2ec95e590327543a6e3ad425b24a19
+      internalID: -508085006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_48
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 17
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 075c421fe9147294980ab72c986cecc9
+      internalID: -860201638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_49
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 17
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10228c3a4c5ee434799a8e4dd7858068
+      internalID: -2106435257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_50
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 17
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6ea2cd88050b3c4391bf0d31a031b82
+      internalID: 1738009897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_51
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 17
+        width: 26
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 503dd2fda2e3f674ea00a37c9a08f78f
+      internalID: -899602460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_52
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 17
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b20ccd210b4ba9e4f8f92c44453fb644
+      internalID: -1477354056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_53
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 17
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c2ea8d12f267734da9bc488936c4d61
+      internalID: -1945771713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_54
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 17
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f10b2e7989160c74cb1f215bade9d53c
+      internalID: 179289805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_55
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 17
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d53ee0395fc4bd5439025d198cafd731
+      internalID: 1865644747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_56
+      rect:
+        serializedVersion: 2
+        x: 291
+        y: 17
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c69dbe4ea8f36d54ea3f6b04fea6939a
+      internalID: 490174335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_57
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 17
+        width: 29
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c03dda9b6963a54ea43a0f7362aaf70
+      internalID: 701755683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_58
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 17
+        width: 29
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c14c77600e1eca43ad1d9c0964d09a3
+      internalID: 95750737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_29
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 81
+        width: 24
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25b91d8b5b43e0b4c965e17b29873fdb
+      internalID: 2005611985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_102
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 49
+        width: 24
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d9dc03c8e5325b4ab4dce57248824f2
+      internalID: 1696776076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_103
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 49
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a83176f7bf6bd24da46d671cabf9164
+      internalID: -418345118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_104
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 49
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 150e48aa7cac41e4585d5ce9cdace64c
+      internalID: 1845551223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_12
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 162
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4117ad4e8c56e048b9b8964755034c9
+      internalID: -1143614608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_59
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 112
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49cdd0f66f8ec9e459612a3bfa8baf6a
+      internalID: -1725480196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Game Boy Advance - CIMA The Enemy - Monster 16_60
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 81
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd751d5e0aa38ff4c9165e9cd0405192
+      internalID: -840836158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Game Boy Advance - CIMA The Enemy - Monster 16_0: -87971643
+      Game Boy Advance - CIMA The Enemy - Monster 16_1: 815308327
+      Game Boy Advance - CIMA The Enemy - Monster 16_10: -564836536
+      Game Boy Advance - CIMA The Enemy - Monster 16_100: -1707513365
+      Game Boy Advance - CIMA The Enemy - Monster 16_101: -1439829201
+      Game Boy Advance - CIMA The Enemy - Monster 16_102: 1696776076
+      Game Boy Advance - CIMA The Enemy - Monster 16_103: -418345118
+      Game Boy Advance - CIMA The Enemy - Monster 16_104: 1845551223
+      Game Boy Advance - CIMA The Enemy - Monster 16_11: 315344260
+      Game Boy Advance - CIMA The Enemy - Monster 16_12: -1143614608
+      Game Boy Advance - CIMA The Enemy - Monster 16_13: 1380226679
+      Game Boy Advance - CIMA The Enemy - Monster 16_14: 790870697
+      Game Boy Advance - CIMA The Enemy - Monster 16_15: -305489276
+      Game Boy Advance - CIMA The Enemy - Monster 16_16: 310412718
+      Game Boy Advance - CIMA The Enemy - Monster 16_17: 2000260689
+      Game Boy Advance - CIMA The Enemy - Monster 16_18: -1376035857
+      Game Boy Advance - CIMA The Enemy - Monster 16_19: 2116698481
+      Game Boy Advance - CIMA The Enemy - Monster 16_2: -1405846684
+      Game Boy Advance - CIMA The Enemy - Monster 16_20: -1552477586
+      Game Boy Advance - CIMA The Enemy - Monster 16_21: 1916806001
+      Game Boy Advance - CIMA The Enemy - Monster 16_22: -240738416
+      Game Boy Advance - CIMA The Enemy - Monster 16_23: -189226691
+      Game Boy Advance - CIMA The Enemy - Monster 16_24: -954014538
+      Game Boy Advance - CIMA The Enemy - Monster 16_25: 1049942790
+      Game Boy Advance - CIMA The Enemy - Monster 16_26: 1171115142
+      Game Boy Advance - CIMA The Enemy - Monster 16_27: 1188106509
+      Game Boy Advance - CIMA The Enemy - Monster 16_28: -1725360163
+      Game Boy Advance - CIMA The Enemy - Monster 16_29: 2005611985
+      Game Boy Advance - CIMA The Enemy - Monster 16_3: -805596992
+      Game Boy Advance - CIMA The Enemy - Monster 16_30: 337200183
+      Game Boy Advance - CIMA The Enemy - Monster 16_31: 172497344
+      Game Boy Advance - CIMA The Enemy - Monster 16_32: -1715282600
+      Game Boy Advance - CIMA The Enemy - Monster 16_33: -822577629
+      Game Boy Advance - CIMA The Enemy - Monster 16_34: 792053029
+      Game Boy Advance - CIMA The Enemy - Monster 16_35: -1910497394
+      Game Boy Advance - CIMA The Enemy - Monster 16_36: 543027034
+      Game Boy Advance - CIMA The Enemy - Monster 16_37: -77666123
+      Game Boy Advance - CIMA The Enemy - Monster 16_38: -2057730395
+      Game Boy Advance - CIMA The Enemy - Monster 16_39: -1009201673
+      Game Boy Advance - CIMA The Enemy - Monster 16_4: -966088721
+      Game Boy Advance - CIMA The Enemy - Monster 16_40: -2042609422
+      Game Boy Advance - CIMA The Enemy - Monster 16_41: -1167243179
+      Game Boy Advance - CIMA The Enemy - Monster 16_42: -1596692033
+      Game Boy Advance - CIMA The Enemy - Monster 16_43: 500816465
+      Game Boy Advance - CIMA The Enemy - Monster 16_44: 177618219
+      Game Boy Advance - CIMA The Enemy - Monster 16_45: 172797940
+      Game Boy Advance - CIMA The Enemy - Monster 16_46: 1485512639
+      Game Boy Advance - CIMA The Enemy - Monster 16_47: -508085006
+      Game Boy Advance - CIMA The Enemy - Monster 16_48: -860201638
+      Game Boy Advance - CIMA The Enemy - Monster 16_49: -2106435257
+      Game Boy Advance - CIMA The Enemy - Monster 16_5: -1098060141
+      Game Boy Advance - CIMA The Enemy - Monster 16_50: 1738009897
+      Game Boy Advance - CIMA The Enemy - Monster 16_51: -899602460
+      Game Boy Advance - CIMA The Enemy - Monster 16_52: -1477354056
+      Game Boy Advance - CIMA The Enemy - Monster 16_53: -1945771713
+      Game Boy Advance - CIMA The Enemy - Monster 16_54: 179289805
+      Game Boy Advance - CIMA The Enemy - Monster 16_55: 1865644747
+      Game Boy Advance - CIMA The Enemy - Monster 16_56: 490174335
+      Game Boy Advance - CIMA The Enemy - Monster 16_57: 701755683
+      Game Boy Advance - CIMA The Enemy - Monster 16_58: 95750737
+      Game Boy Advance - CIMA The Enemy - Monster 16_59: -1725480196
+      Game Boy Advance - CIMA The Enemy - Monster 16_6: -1717477690
+      Game Boy Advance - CIMA The Enemy - Monster 16_60: -840836158
+      Game Boy Advance - CIMA The Enemy - Monster 16_61: 472214803
+      Game Boy Advance - CIMA The Enemy - Monster 16_62: -459505756
+      Game Boy Advance - CIMA The Enemy - Monster 16_63: 95993906
+      Game Boy Advance - CIMA The Enemy - Monster 16_64: -105742276
+      Game Boy Advance - CIMA The Enemy - Monster 16_65: -2103076179
+      Game Boy Advance - CIMA The Enemy - Monster 16_66: -1175428634
+      Game Boy Advance - CIMA The Enemy - Monster 16_67: -963849545
+      Game Boy Advance - CIMA The Enemy - Monster 16_68: 1586900560
+      Game Boy Advance - CIMA The Enemy - Monster 16_69: -1378653108
+      Game Boy Advance - CIMA The Enemy - Monster 16_7: -1582864303
+      Game Boy Advance - CIMA The Enemy - Monster 16_70: -367024024
+      Game Boy Advance - CIMA The Enemy - Monster 16_71: -1557375903
+      Game Boy Advance - CIMA The Enemy - Monster 16_72: -1504803642
+      Game Boy Advance - CIMA The Enemy - Monster 16_73: -106306768
+      Game Boy Advance - CIMA The Enemy - Monster 16_74: -1363093730
+      Game Boy Advance - CIMA The Enemy - Monster 16_75: -678227131
+      Game Boy Advance - CIMA The Enemy - Monster 16_76: 239360748
+      Game Boy Advance - CIMA The Enemy - Monster 16_77: -1016325479
+      Game Boy Advance - CIMA The Enemy - Monster 16_78: 468144021
+      Game Boy Advance - CIMA The Enemy - Monster 16_79: 810558080
+      Game Boy Advance - CIMA The Enemy - Monster 16_8: -1420270280
+      Game Boy Advance - CIMA The Enemy - Monster 16_80: 1019512301
+      Game Boy Advance - CIMA The Enemy - Monster 16_81: 1435448097
+      Game Boy Advance - CIMA The Enemy - Monster 16_82: -113681393
+      Game Boy Advance - CIMA The Enemy - Monster 16_83: -1729978682
+      Game Boy Advance - CIMA The Enemy - Monster 16_84: 1691135430
+      Game Boy Advance - CIMA The Enemy - Monster 16_85: -49376185
+      Game Boy Advance - CIMA The Enemy - Monster 16_86: -2118620071
+      Game Boy Advance - CIMA The Enemy - Monster 16_87: -362800571
+      Game Boy Advance - CIMA The Enemy - Monster 16_88: -316534024
+      Game Boy Advance - CIMA The Enemy - Monster 16_89: -1072329868
+      Game Boy Advance - CIMA The Enemy - Monster 16_9: -284757453
+      Game Boy Advance - CIMA The Enemy - Monster 16_90: -948709165
+      Game Boy Advance - CIMA The Enemy - Monster 16_91: 859477492
+      Game Boy Advance - CIMA The Enemy - Monster 16_92: -1966823466
+      Game Boy Advance - CIMA The Enemy - Monster 16_93: -208026894
+      Game Boy Advance - CIMA The Enemy - Monster 16_94: 1943752300
+      Game Boy Advance - CIMA The Enemy - Monster 16_95: -1961116698
+      Game Boy Advance - CIMA The Enemy - Monster 16_96: 1051577721
+      Game Boy Advance - CIMA The Enemy - Monster 16_97: -1531077818
+      Game Boy Advance - CIMA The Enemy - Monster 16_98: -1463685126
+      Game Boy Advance - CIMA The Enemy - Monster 16_99: 1456083432
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
