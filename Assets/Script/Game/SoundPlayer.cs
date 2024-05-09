@@ -10,6 +10,7 @@ public class SoundPlayer : MonoBehaviour
     [SerializeField] private AudioSource expAudio;
     [SerializeField] private AudioSource hurtAudio;
     [SerializeField] private AudioSource levelUpAudio;
+    [SerializeField] private AudioSource level1Music;
 
     float initialPitch;
 
@@ -56,5 +57,15 @@ public class SoundPlayer : MonoBehaviour
     public void PlayLevelUpAudio()
     {
         levelUpAudio.Play();
+    }
+
+    public void StartMusic()
+    {
+        level1Music.Play();
+    }
+
+    public void StopMusic() 
+    {
+        level1Music.Stop();
     }
 }

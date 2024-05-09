@@ -43,16 +43,19 @@ public class GameManager : MonoBehaviour
         hpTXT = hpDisplay.GetComponent<TextMeshProUGUI>();
         currentLvlTXT = currentLvlDisplay.GetComponent<TextMeshProUGUI>();
         nextLvlTXT = nextLvlDisplay.GetComponent<TextMeshProUGUI>();
+        
     }
 
     private void Start()
     {
         restartButton.OnClick += RestartGame;
         quitGameButton.OnClick += QuitGame;
+        SoundPlayer.GetInstance().StartMusic();
     }
 
     public void PlayerDeath() 
     {
+        SoundPlayer.GetInstance().StopMusic();
         ToggleUI(playerUI, false);
         ToggleUI(gameOverUI, true);
     }
@@ -90,6 +93,7 @@ public class GameManager : MonoBehaviour
         ToggleUI(playerUI, true);
         Spawner.GetInstance().newSpawnAmount = 3;
         Spawner.GetInstance().SpawnEnemy();
+        SoundPlayer.GetInstance().StartMusic();
     }
 
     private void QuitGame()
