@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8484672225018695117}
   m_Layer: 0
   m_Name: FireDragon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,3 +184,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
+  damage: 5
+  maxHealthPoint: 1500
+  attackRange: 7
