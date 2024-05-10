@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class PlayerRange : MonoBehaviour
+public class PlayerRange : MonoBehaviour, IUpdatePlayerRange
 {
     public List<GameObject> targets = new();
+    private CircleCollider2D circleCollider;
+
+    private void Start()
+    {
+        circleCollider= GetComponent<CircleCollider2D>();
+    }
 
     private void Update()
     {
@@ -30,6 +36,10 @@ public class PlayerRange : MonoBehaviour
         {
             targets.Remove(trigger.gameObject);
         }
+        else if(trigger.gameObject.CompareTag("PlayerProjectile"))
+        {
+            trigger.gameObject.SetActive(false);
+        }
     }
 
     public GameObject ClosestTarget()
@@ -53,5 +63,10 @@ public class PlayerRange : MonoBehaviour
 
         //RETOURNE L'ENEMY LE PLUS PROCHE DU JOUEUR
         return closestTarget;
+    }
+
+    public void UpdatePlayerRange(float range)
+    {
+        circleCollider.radius = range;
     }
 }

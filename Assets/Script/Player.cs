@@ -5,10 +5,16 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.Rendering;
 
 public interface IUpdateWeaponStats
 {
-    void OnDamageChanged(float damage);
+    void UpdateWeaponStats(float damage);
+}
+
+public interface IUpdatePlayerRange
+{
+    void UpdatePlayerRange(float range);
 }
 
 public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer, IWeaponDamage
@@ -27,12 +33,13 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer, IWeapon
     private float moveSpeed = 5f;
     private float attackSpeed = 2f;
     private float attackDamage = 1f;
+    private float attackRange = 3f;
     private int maxHealthPoint = 10;
     private int projectileCount = 1;
 
     public int playerLVL = 1;
     public int playerXP = 0;
-    public int RequiredXp = 8;
+    public int RequiredXp = 16;
 
     public bool isDead = false;
     private int healthPoint = 10;
@@ -40,7 +47,7 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer, IWeapon
     float currentAttackCooldown;
 
     private List<IUpdateWeaponStats> damageObserver = new();
-
+    IUpdatePlayerRange rangeObserver;
 
     //OBSERVER
     public void RegisterDamage(IUpdateWeaponStats observer)
@@ -48,7 +55,7 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer, IWeapon
         if (!damageObserver.Contains(observer)) 
         {
             damageObserver.Add(observer);
-            observer.OnDamageChanged(attackDamage);
+            observer.UpdateWeaponStats(attackDamage);
         }
     }
 
@@ -64,8 +71,13 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer, IWeapon
     {
         foreach (var observer in damageObserver) 
         {
-            observer.OnDamageChanged(attackDamage);
+            observer.UpdateWeaponStats(attackDamage);
         }
+    }
+
+    private void NotifyRangeObserver()
+    {
+        rangeObserver.UpdatePlayerRange(attackRange);
     }
 
 
@@ -79,6 +91,7 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer, IWeapon
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         range = GetComponentInChildren<PlayerRange>();
+        rangeObserver = range;
 
         GameManager.GetInstance().SetPlayerHPDisplay(healthPoint, maxHealthPoint);
         GameManager.GetInstance().SetPlayerXPDisplay(playerXP, RequiredXp);
@@ -226,7 +239,9 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer, IWeapon
         attackSpeed += .5f;
         moveSpeed += .1f;
         attackDamage += .5f;
+        attackRange += .25f;
         NotifyDamageObservers();
+        NotifyRangeObserver();
         playerLVL++;
         projectileCount = playerLVL/2;
         GameManager.GetInstance().SetPlayerHPDisplay(healthPoint, maxHealthPoint);

@@ -6,7 +6,7 @@ public class Scythe : Projectile, IUpdateWeaponStats
 {
     private float rotationSpeed = 575f;
 
-    public void OnDamageChanged(float newDamage)
+    public void UpdateWeaponStats(float newDamage)
     {
         damage = newDamage;
     }

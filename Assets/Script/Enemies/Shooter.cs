@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface IUpdateProjectileStats
 {
-    void SetProjectileStats(float damage);
+    void SetProjectileStats(float damage, float range);
 }
 
 public class Shooter : Enemy
@@ -29,7 +29,7 @@ public class Shooter : Enemy
         if (!damageObserver.Contains(observer))
         {
             damageObserver.Add(observer);
-            observer.SetProjectileStats(attackDamage);
+            observer.SetProjectileStats(attackDamage, range);
         }
     }
 
@@ -45,7 +45,7 @@ public class Shooter : Enemy
     {
         foreach (var observer in damageObserver)
         {
-            observer.SetProjectileStats(attackDamage);
+            observer.SetProjectileStats(attackDamage, range);
         }
     }
 
