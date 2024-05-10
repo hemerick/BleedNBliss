@@ -11,6 +11,7 @@ public class SimpleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnPointerDown(PointerEventData eventData)
     {
         OnClick?.Invoke(); //Si OnClick n'est pas null, Execute OnClick()
+        transform.localScale = transform.localScale / 1.1f;
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -20804,6 +20804,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireDragon
       objectReference: {fileID: 0}
+    - target: {fileID: 8484672225018695117, guid: e6f2ad5e89808fd44be6a8ce4ce81efc, type: 3}
+      propertyPath: maxHealthPoint
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

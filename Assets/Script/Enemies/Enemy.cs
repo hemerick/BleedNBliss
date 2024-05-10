@@ -97,12 +97,6 @@ public abstract class Enemy : MonoBehaviour, IPoolable, IWeaponDamage
     }
 
     protected abstract void MoveTowardPlayer();
-    //{
-
-    //    Vector2 direction = (target.transform.position - transform.position).normalized;
-    //    rb.velocity = direction * moveSpeed;
-
-    //} 
 
     protected IEnumerator FlashRed() 
     {
