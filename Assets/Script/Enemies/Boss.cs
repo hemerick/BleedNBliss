@@ -53,8 +53,16 @@ public class DashAtPlayerState : BossState
 
     public override void Update()
     {
-        boss.Movement(true, 0);    //DOESN'T MOVE - JUST LOOK AT PLAYER
-        Debug.Log("NOT IMPLEMENTED YET");
+
+        if (boss.canDash)
+        {
+            boss.DashAtPlayer();
+            boss.canDash= false;
+        }
+        else
+        {
+            boss.DashCooldown();
+        }
     }
 }
 
@@ -74,7 +82,25 @@ public class RunAwayFromPlayerState : BossState
 
     public override void Update()
     {
-        boss.Movement(false, boss.Speed);
+        if (boss.InRange())
+        {
+            boss.StopMovement();
+            boss.Movement(false, boss.Speed);
+            if (boss.currentAttackCooldown <= 0)
+            {
+                boss.StartCoroutine(boss.ShootSequence(5, .25f));
+                boss.currentAttackCooldown = boss.attackCooldown;
+            }
+            else
+            {
+                boss.currentAttackCooldown -= Time.deltaTime * boss.attackSpeed;
+            }
+        }
+        else
+        {
+            boss.StopCoroutine(boss.ShootSequence(0, 0));
+            boss.Movement(true, boss.Speed);
+        }
     }
 }
 
@@ -87,7 +113,7 @@ public class AttackPlayerState : BossState
         boss.StopMovement();
     }
 
-    public override void Exit() 
+    public override void Exit()
     {
         boss.StopMovement();
     }
@@ -95,43 +121,61 @@ public class AttackPlayerState : BossState
     public override void Update()
     {
         boss.Movement(true, 0);    //DOESN'T MOVE - JUST LOOK AT PLAYER
-        Debug.Log("NO ATTACK YET");
+        if (boss.currentAttackCooldown <= 0)
+        {
+            boss.StartCoroutine(boss.ShootSequence(10, .25f));
+            boss.currentAttackCooldown = boss.attackCooldown;
+        }
+        else
+        {
+            boss.currentAttackCooldown -= Time.deltaTime * boss.attackSpeed;
+        }
     }
 }
 
 public class DyingState : BossState
 {
-    public DyingState(Boss boss) : base(boss) {}
+    public DyingState(Boss boss) : base(boss) { }
 
     public override void Enter()
     {
         boss.DeathAnimation();
     }
 
-    public override void Exit() {}
+    public override void Exit() { }
 
-    public override void Update() {}
+    public override void Update() { }
 }
 
 public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
 {
     private Animator animator;
     private GameObject target;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private SpriteRenderer sprite;
 
+    [SerializeField] private GameObject fireProjectilePrefab;
+    [SerializeField] private GameObject flamePrefab;
+
     //BOSS STATS
+    [SerializeField] private float maxHealthPoint = 100;
     [SerializeField] public float Speed = 3f;
     [SerializeField] private int attackDamage = 5;
-    [SerializeField] private float maxHealthPoint = 100;
     [SerializeField] private float attackRange = 5f;
+    [SerializeField] public float attackSpeed = .5f;
 
     Vector3 direction;
     float healthPoint = 100;
     bool isDead = false;
+    public bool canDash = true;
+
+    public float attackCooldown = 1;
+    public float currentAttackCooldown = 0f;
+    public float dashCooldown = 5f;
+    public float currentDashCooldown = 5f;
 
     //CONSTANTES
-    private float[] HP_TRIGGER_PERCENT = new float[] { 75f, 50f, 25f};
+    private float[] HP_TRIGGER_PERCENT = new float[] { 75f, 50f, 25f };
 
     private BossState currentState;
 
@@ -158,7 +202,7 @@ public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
     //STATES
     public void SetState(BossState state)
     {
-        if(currentState == state) return;
+        if (currentState == state) return;
         currentState?.Exit();
         currentState = state;
         currentState.Enter();
@@ -166,9 +210,9 @@ public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
 
     //METHODES (mettre public pour être accessible dans les StateClass)
     //Implémenter la logique ici
-    public void Movement(bool followPlayer, float moveSpeed) 
+    public void Movement(bool followPlayer, float moveSpeed)
     {
-        if(followPlayer) 
+        if (followPlayer)
         {
             direction = (target.transform.position - transform.position).normalized;
             rb.velocity = direction * moveSpeed;
@@ -184,7 +228,7 @@ public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
             animator.SetFloat("Horizontal", direction.x);
             animator.SetFloat("Vertical", direction.y);
         }
-        else if(!followPlayer)
+        else if (!followPlayer)
         {
             direction = (transform.position - target.transform.position).normalized;
             rb.velocity = direction * moveSpeed;
@@ -200,19 +244,75 @@ public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
             animator.SetFloat("Horizontal", direction.x);
             animator.SetFloat("Vertical", -direction.y);
         }
-        
+
     } //Le bool signifie Poursuite ou Fuite
-    
-    public void StopMovement() 
+
+    public void StopMovement()
     {
         rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime * 10);
     }
 
-    public void DashAtPlayer() { }
+    public void DashAtPlayer()
+    {
+        Movement(true, Speed * 2.5f);
+    }
 
-    public void ShootAtPlayer() { }
+    public void DashCooldown()
+    {
+        if(currentDashCooldown > 0)
+        {
+            currentDashCooldown -= Time.deltaTime;
+        }
+        else
+        {
+            canDash= true;
+            currentDashCooldown = dashCooldown;
+        }
+    }
 
-    private void TakeDamage(float damageReceived) 
+    public bool InRange()
+    {
+        float distanceBetweenPlayer = Vector3.Distance(transform.position, target.transform.position);
+        if (distanceBetweenPlayer <= attackRange)
+        {
+            return true;
+        }
+        else { return false; }
+    }
+
+    public void ShootAtPlayer()
+    {
+        //CALCULE LA DIRECTION DE LA CIBLE
+        Vector3 directionToTarget = target.transform.position - transform.position;
+        directionToTarget.Normalize();
+
+        //CALCULE L'ANGLE DE ROTATION EN RADIANS
+        float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle);
+
+        //PREND UN PROJECTILE DU POOL ET L'ORIENTE VERS LA CIBLE
+        GameObject fireProjectile = ObjectPool.GetInstance().GetPooledObject(fireProjectilePrefab);
+        fireProjectile.GetComponent<Projectile>().source = ProjectileSource.Enemy;
+        fireProjectile.transform.SetPositionAndRotation(transform.position, rotation);
+        fireProjectile.SetActive(true);
+        fireProjectile.GetComponent<IPoolable>().Reset();
+
+        //RegisterDamage(fireProjectile.GetComponent<EnemyProjectile>());
+    }
+
+    public IEnumerator ShootSequence(int projectileCount, float fireInterval)
+    {
+        for (int i = 0; i < projectileCount; i++)
+        {
+            animator.SetBool("isAttacking", true);
+            ShootAtPlayer();
+
+            yield return new WaitForSeconds(fireInterval);
+            animator.SetBool("isAttacking", false);
+        }
+    }
+
+    private void TakeDamage(float damageReceived)
     {
         healthPoint -= damageReceived;
 
@@ -238,14 +338,14 @@ public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
 
     private BossState CheckHP()
     {
-        float healthPercent = (healthPoint / maxHealthPoint)*100;
+        float healthPercent = (healthPoint / maxHealthPoint) * 100;
         Debug.Log("HP % : " + healthPercent);
 
-        if(healthPercent <= 0) {return new DyingState(this);}
-        else if(healthPercent <= HP_TRIGGER_PERCENT[2]) { return new RunAwayFromPlayerState(this); }
-        else if(healthPercent <= HP_TRIGGER_PERCENT[1]) { return new DashAtPlayerState(this); }
-        else if(healthPercent <= HP_TRIGGER_PERCENT[0]) { return new AttackPlayerState(this); }
-        else { return new ChasePlayerState(this);}
+        if (healthPercent <= 0) { return new DyingState(this); }
+        else if (healthPercent <= HP_TRIGGER_PERCENT[2]) { return new RunAwayFromPlayerState(this); }
+        else if (healthPercent <= HP_TRIGGER_PERCENT[1]) { return new DashAtPlayerState(this); }
+        else if (healthPercent <= HP_TRIGGER_PERCENT[0]) { return new AttackPlayerState(this); }
+        else { return new ChasePlayerState(this); }
     }
 
     private IEnumerator FlashRed()
@@ -255,9 +355,9 @@ public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
         sprite.color = Color.white;
     }
 
-    public void DeathAnimation() 
+    public void DeathAnimation()
     {
-        rb.velocity= Vector3.zero;
+        rb.velocity = Vector3.zero;
 
         animator.SetBool("isDead", isDead);
     }
@@ -269,7 +369,7 @@ public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
 
     public void ProjectileInflictDamage(float damageReceived)
     {
-        if(healthPoint <= 0) { return;}
+        if (healthPoint <= 0) { return; }
         TakeDamage(damageReceived);
     } //FUNCTION TO RECEIVE DAMAGE FROM PLAYER PROJECTILE
 

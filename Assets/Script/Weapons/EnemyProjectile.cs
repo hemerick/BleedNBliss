@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEngine;
 
-public class WoodenBall : Projectile, IUpdateProjectileStats
+public class EnemyProjectile : Projectile, IUpdateProjectileStats
 {
     public void SetProjectileStats(float newDamage, float newLifetime)
     {

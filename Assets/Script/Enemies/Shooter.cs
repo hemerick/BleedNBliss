@@ -41,7 +41,7 @@ public class Shooter : Enemy
         }
     }
 
-    private void NotifyDamageObservers()
+    private void NotifyDamageObservers() //StatUpdate -- Use if enemy get stronger stats
     {
         foreach (var observer in damageObserver)
         {
@@ -124,7 +124,7 @@ public class Shooter : Enemy
         projectile.SetActive(true);
         projectile.GetComponent<IPoolable>().Reset();
 
-        RegisterDamage(projectile.GetComponent<WoodenBall>());
+        RegisterDamage(projectile.GetComponent<EnemyProjectile>());
 
     }
 

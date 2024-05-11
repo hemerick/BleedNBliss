@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3487695089930899715}
   - component: {fileID: 3504890928240706021}
   - component: {fileID: 1204522275737879522}
+  - component: {fileID: 2804641771240484761}
   m_Layer: 0
   m_Name: FireProjectile
   m_TagString: Untagged
@@ -142,3 +143,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.25
+--- !u!114 &2804641771240484761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613340869294028094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b144d11dad72af14287aad97970da94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  lifetime: 5
+  source: 1

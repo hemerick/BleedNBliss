@@ -17,10 +17,10 @@ public enum ProjectileSource
 public abstract class Projectile : MonoBehaviour, IPoolable
 {
     [SerializeField] protected float moveSpeed;
-    [SerializeField] protected float lifetime = 0.4f; //MAKE THIS == TO RANGE VALUE
+    [SerializeField] protected float lifetime = 1f; //MAKE THIS == TO RANGE VALUE
     public ProjectileSource source;
-    protected float currentLifetime = 0.4f;
-    protected float damage;
+    protected float currentLifetime = 1f;
+    protected float damage = 1;
 
     protected Vector3 movement;
 
