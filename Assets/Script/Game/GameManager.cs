@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
         Player.GetInstance().Respawn();
         ToggleUI(gameOverUI, false);
         ToggleUI(playerUI, true);
+        Spawner.GetInstance().bossSpawnedForCurrentLevel = false;
         Spawner.GetInstance().newSpawnAmount = 3;
         Spawner.GetInstance().StartWave();
         SoundPlayer.GetInstance().StartMusic();

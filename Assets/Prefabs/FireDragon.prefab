@@ -183,7 +183,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c64dfded01ca61c4faa31eefdfbc268d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
-  damage: 5
-  maxHealthPoint: 1500
+  rb: {fileID: 8771989597665367251}
+  fireProjectilePrefab: {fileID: 1613340869294028094, guid: f7475d560c8d0cd4299a98db9cf39c61, type: 3}
+  flamePrefab: {fileID: 1157378573428600616, guid: 0510d8941db44274195ce1126a31db27, type: 3}
+  maxHealthPoint: 3000
+  Speed: 3
+  attackDamage: 5
   attackRange: 7
+  attackSpeed: 0.5
+  canDash: 1
+  attackCooldown: 1
+  currentAttackCooldown: 0
+  dashCooldown: 3.5
+  currentDashCooldown: 3.5

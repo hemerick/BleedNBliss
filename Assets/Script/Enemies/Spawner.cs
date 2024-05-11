@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class SpawnInfo 
+public class SpawnInfo
 {
     public GameObject enemy;
     public float spawnChance;
@@ -14,12 +14,14 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<SpawnInfo> spawnInfos; //Liste des informations du monstre à faire spawn
     [SerializeField] private GameObject defaultEnemy;
+    [SerializeField] private GameObject bossPrefab;
     [SerializeField] private float spawnRadius = 10f;
     public int spawnAmount = 3;
     public int newSpawnAmount = 3;
+    public bool bossSpawnedForCurrentLevel = false;
 
     private static Spawner instance;
-    
+
     public static Spawner GetInstance() => instance;
 
     private void Awake()
@@ -43,32 +45,59 @@ public class Spawner : MonoBehaviour
 
         StartWave();
     }
-    
+
     public void StartWave()
     {
         //Coroutine est une méthode qui peut inclure des délais de temps
         StartCoroutine(SpawnEnemy());
     }
-    
+
     public IEnumerator SpawnEnemy()
     {
         while (!Player.GetInstance().isDead)
         {
-            for (int i = 0; i < newSpawnAmount; i++)
+            if (ShouldSpawnBoss())
             {
-                GameObject enemy = ObjectPool.GetInstance().GetPooledObject(SelectEnemyToSpawn());
-                Vector3 spawnPosition = RandomPositionAroundPlayer();
-                enemy.transform.position = spawnPosition;
-
-                enemy.GetComponent<IPoolable>().Reset();
-                enemy.SetActive(true);
+                SpawnBoss();
             }
-                yield return new WaitForSeconds(5);
-            newSpawnAmount = Player.GetInstance().playerLVL * spawnAmount/2;
+            else
+            {
+                for (int i = 0; i < newSpawnAmount; i++)
+                {
+                    GameObject enemy = ObjectPool.GetInstance().GetPooledObject(SelectEnemyToSpawn());
+                    enemy.transform.position = RandomPositionAroundPlayer();
+
+                    enemy.GetComponent<IPoolable>().Reset();
+                    enemy.SetActive(true);
+                }
+
+            }
+
+            yield return new WaitForSeconds(5);
+            newSpawnAmount = Player.GetInstance().playerLVL * spawnAmount / 2;
         }
     }
 
-    private GameObject SelectEnemyToSpawn() 
+    private bool ShouldSpawnBoss()
+    {
+        int playerLvl = Player.GetInstance().playerLVL;
+        if(playerLvl % 10 == 0 && !bossSpawnedForCurrentLevel) 
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void SpawnBoss()
+    {
+        GameObject boss = ObjectPool.GetInstance().GetPooledObject(bossPrefab);
+        boss.transform.position = RandomPositionAroundPlayer();
+        boss.GetComponent<IPoolable>().Reset();
+        boss.SetActive(true);
+        bossSpawnedForCurrentLevel= true;
+    }
+
+    private GameObject SelectEnemyToSpawn()
     {
         float randomPoint = UnityEngine.Random.value * 100;
         float currentSum = 0f;
@@ -85,7 +114,7 @@ public class Spawner : MonoBehaviour
     }
 
 
-    private Vector3 RandomPositionAroundPlayer() 
+    private Vector3 RandomPositionAroundPlayer()
     {
         Vector3 playerPosition = Player.GetInstance().transform.position;
         Vector2 randomDirection = UnityEngine.Random.insideUnitCircle.normalized * spawnRadius;

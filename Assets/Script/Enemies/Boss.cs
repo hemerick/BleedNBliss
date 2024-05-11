@@ -185,8 +185,7 @@ public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
         rb = GetComponent<Rigidbody2D>();
         target = Player.GetInstance().gameObject;
         sprite = GetComponent<SpriteRenderer>();
-
-        SetState(CheckHP());
+        Reset();
     }
 
     private void Update()
@@ -197,6 +196,7 @@ public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
     {
         healthPoint = maxHealthPoint;
         isDead = false;
+        SetState(CheckHP());
     }
 
     //STATES
@@ -254,7 +254,7 @@ public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
 
     public void DashAtPlayer()
     {
-        Movement(true, Speed * 2.5f);
+        Movement(true, Speed * 4.25f);
     }
 
     public void DashCooldown()
@@ -365,6 +365,7 @@ public class Boss : MonoBehaviour, IPoolable, IWeaponDamage
     public void DisableBoss()
     {
         gameObject.SetActive(false);
+        Spawner.GetInstance().bossSpawnedForCurrentLevel = false;
     }
 
     public void ProjectileInflictDamage(float damageReceived)

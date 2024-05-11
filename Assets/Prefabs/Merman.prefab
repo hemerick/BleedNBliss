@@ -211,4 +211,4 @@ MonoBehaviour:
   maxHealthPoint: 5
   moveSpeed: 2
   attackDamage: 2
-  experienceDrop: 3
+  experienceDrop: 6

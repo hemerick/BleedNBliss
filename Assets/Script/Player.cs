@@ -226,7 +226,7 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer, IWeapon
         {
             SoundPlayer.GetInstance().PlayLevelUpAudio();
             playerXP -= RequiredXp;
-            RequiredXp *= 2;
+            RequiredXp += RequiredXp/2;
             LevelUp();
         }
         GameManager.GetInstance().SetPlayerXPDisplay(playerXP, RequiredXp);
