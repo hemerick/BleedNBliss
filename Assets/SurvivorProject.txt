@@ -1,0 +1,115 @@
+HÉMERICK L'ÉCUYER
+PROJET FINAL - SYSTEM INFO II
+
+SURVIVOR-LIKE GAME
+
+Dans mon projet "Survivor-like", J'ai utilisé plusieurs patrons de conception.
+Ainsi, mon jeu est beaucoup plus performant. Ce type de jeu à la particularité
+d'avoir beaucoup d'entités en même temps à l'écran.
+
+[PATRONS DE CONCEPTION UTILISÉ]
+- Singleton
+- ObjectPool
+- Observer
+- Factory
+- Proxy
+- StateMachine
+
+[SINGLETON]
+J'utilise le Singleton pour plusieurs choses dans mon projet.
+Le Singleton est utilisé pour les objets qui sont UNIQUE.
+
+Voici les classes principales qui en font usages :
+
+- ObjectPool (À chaque fois que j'ai besoin de GetPooledObject, j'ai besoin de référence à ObjectPool facilement)
+
+- SoundPlayer (À chaque fois que j'ai besoin de jouer un son/musique, j'ai besoin
+d'avoir référence à cette classe facilement)
+
+- GameManager (Cette classe gère le fonctionnement du jeu. J'ai besoin d'aller changer
+certaines variables dans GameManager à partir de d'autres classes pour que le jeu fonctionne correctement)
+exemple : Un seul Boss peut apparaitre, à sa mort, je dois informer le GameManager que le Boss est mort. Ainsi, d'autres boss peuvent apparaitre plus tard
+
+- J'utilise le singleton pour plusieurs autres classes. (EnemySpawner, SpawnPoint, Player...)
+
+[OBJECT POOL]
+Cette classe sert à créer tous les ennemis du jeu au lancement.
+De cette manière, j'ai seulement besoin de "Load" les ennemis une seule fois
+Grâce à ce patron, je gagne ÉNORMÉMENT de perfomances. Dans un jeu comme celui-ci, beaucoup d'entités peuvent être présent au même moments, un ObjectPool est une nécéssité.
+
+Dans mon cas, j'ai rendu mon ObjectPool Universel, je peux y ajouter autant d'objet que je le veux dans celui-ci. Les Objets peuvent être de type complètement différent et ça fonctionne quand même. 
+Pour accèder à un Objet désiré, j'utilise la méthode GetPooledObject(GameObject desiredObject). Je dois seulement précisé le GameObject désiré comme paramètre et cette fonction me renvoie un des objets non-actif.
+Pour trouvé l'objet inactif dans ma grande liste d'objet, j'utilise l'Algorithme de recherche "Recherche linéraire circulaire". Je garde trace du dernier Index utilisé pour ainsi trouver plus rapidement un objet inactif sans parcourir la liste au complet. 
+De cette manière, j'assure d'avoir des bonnes performances lorsque je recherche plusieurs Objets dans le pool de manière intensive.
+
+[OBSERVER]
+Les observers servent à transmettre des valeurs entre classes sans nécessairement avoir besoin de référence entre-elle. Avec l'usage d'interface et d'abonnement, je peux transmettre des valeurs de manière efficace et performantes.
+Voici des cas où j'ai fait l'usage d'Observer :
+
+- Infliger des dégats (Pour le joueur et pour les ennemis)
+- Ramasser de l'expérience
+- Transmettre les stats de Dégats et Range au Projectiles lancés (Pour le joueur et pour les ennemis)
+
+Ils fonctionnent tous à peut-près de la même manière.
+Prennon exemple sur l'expérience.
+
+Les ennemis "drop" de l'expérience en mourrant
+Ceux-ci attribuent au particule d'expérience une valeur d'expérience
+Il existe plusieurs types de particule d'expérience
+Vert (valeur = 1)
+Bleu (valeur = 5)
+Violet (valeur = 25)
+...
+Exemple : Enemy drop (32xp)
+L'ennemi fait donc apparaitre (1 Violet, 1 Bleu, 2 Vert)
+(25 + 5 + 1 + 1 = 32)
+Pour déterminer la valeur d'expérience, j'utilise l'observer pour transmettre la valeur données à la particule d'expérience correspondante
+De cette manière, je n'ai pas besoin d'avoir de référence à l'expérience
+Les classes se parlent entre-elle de manière efficace et perfomantes.
+De plus, cette méthode montré plus-haut, me sert à minimisé la quantité d'expérience présent au même moment sur la scène.
+
+[FACTORY]
+L'EnemyFactory sert à déterminer les monstres présent dans la scène. Ainsi, on peut controller la diffuclté du jeu.
+Pour ma part, le EnemySpawner me sert de Factory.
+J'ai une classe qui me sert de SpawnInfo(GameObject EnemyToSpawn, float SpawnChance%). C'est une liste d'Ennemis Spéciaux que je peux configuré dans l'éditeur Unity directement.
+Chaque SpecialEnemy à un %Chance de spawn, si le spawn n'est pas réussi, je fais spawn mes ennemis de base à la place.
+Chaque fois que le joueur LvlUp, plus d'ennemis apparait, se qui rend le jeu plus difficile.
+Malheuresement, je n'ai pas eu le temps d'implémenté qu'au fil du jeu, le SpawnChance% augmente pour les ennemis spéciaux.
+
+[PROXY]
+Le proxy permet d'ajouter un poin faible aux ennemis plus résistant. Ceci oblige le joueur de prendre une approche différente pour cette ennemis, se qui rend le GamePlay plus intéressant.
+Pour ma part, j'ai utilisé un Proxy dans l'ennemi "Monstrosity", un ennemi assez résistant.
+En attaquant le point faible, celui-ci prend le double de dégats
+Je n'ai pas eux le temps d'implémenté cette fonctionnalité comme je le souhaitais, elle est un peu hard-coded, mais elle fonctionne bien.
+
+[STATE MACHINE]
+Le state machine sert de Behaviour Tree pour un ennemi ayant plusieurs comportement différent. Ceci sert à éviter d'avoir plein de IF statement, qui rend le code assez illisible. Le state machine facilite l'implémentation de nouveau comportement.
+Pour ma part, j'ai utilisé le StateMachine dans mon Boss : FireDragon
+
+Les States sont défini par le pourcentage de vie restant du boss.
+Celui-ci à 4 States :
+
+HP >= 75% : ChasingPlayerState : Le boss poursuit le joueur. Une collision inflige beaucoup de dégats au joueur (par Observer)
+
+HP >= 50% : ShootingAtPlayerState : Le boss cèsse de poursuivre le joueur et tire beaucoup de projectile dans la direction du joueur (Difficile)
+
+HP >= 25% : DashAtPlayerState : Le boss fonce rapidement vers le joueur à chaque 4s environ
+
+HP > 0% : FleeingState : Le boss garde une distance avec le joueur pour lui tiré des projectiles (moins rapidement que le ShootingAtPlayerState) (Très Difficile)
+
+HP = 0% : DeathState : Le boss à une animation de mort et puis se fait désactivé.
+
+
+[GAME PROGRESS]
+L'Expérience nécessaire du joueur pour LvlUp augmente à chaque LvlUp
+Chaque LvlUp, le joueur gagne de la vie, de la vitesse de déplacement, de la vitesse d'Attaque, plus de Dégats, plus de porté et plus de projectile.
+
+Le Niveau du joueur affecte la quantités d'ennemis qui apparait.
+Au niveau 10/20/30/... un boss apparait.
+
+[ART]
+J'ai une musique, des sons pour les dégats, des sons pour l'expérience et les LVLUP
+Pour la map, j'ai fais une TileMap moi-même, ainsi que les sprites d'arbres.
+Pour les animations, l'expérience et le boss sont animés (le boss à 8 direction)
+Les sprites d'ennemis ont été pris sur sprite-ressource.com
+
