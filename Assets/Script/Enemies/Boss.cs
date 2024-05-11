@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.U2D;
-using static UnityEngine.Rendering.DebugUI;
 
 public abstract class BossState
 {

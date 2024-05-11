@@ -1,11 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.Rendering;
 
 public interface IUpdateWeaponStats
 {

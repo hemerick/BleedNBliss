@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor.UI;
 using UnityEngine;
 
 public interface IAttackPlayer 
