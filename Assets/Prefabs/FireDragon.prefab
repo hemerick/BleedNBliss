@@ -194,5 +194,5 @@ MonoBehaviour:
   canDash: 1
   attackCooldown: 1
   currentAttackCooldown: 0
-  dashCooldown: 3.5
-  currentDashCooldown: 3.5
+  dashCooldown: 2.75
+  currentDashCooldown: 2.75

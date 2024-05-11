@@ -202,7 +202,7 @@ public class Player : MonoBehaviour, IExperienceObserver, IAttackPlayer, IWeapon
         healthPoint = maxHealthPoint;
         projectileCount= 1;
         playerXP = 0;
-        RequiredXp = 8;
+        RequiredXp = 16;
         playerLVL = 1;
         GameManager.GetInstance().SetPlayerXPDisplay(playerXP, RequiredXp);
         GameManager.GetInstance().SetPlayerHPDisplay(healthPoint, maxHealthPoint);

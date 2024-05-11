@@ -7,6 +7,7 @@ TagManager:
   - Projectile
   - Enemy
   - PlayerProjectile
+  - SoftSpot
   layers:
   - Default
   - TransparentFX

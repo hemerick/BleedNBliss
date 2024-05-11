@@ -51,6 +51,13 @@ public abstract class Projectile : MonoBehaviour, IPoolable
             hittedTarget?.ProjectileInflictDamage(damage);
             //gameObject.SetActive(false)
         }
+        if(source == ProjectileSource.Player && collision.CompareTag("SoftSpot"))
+        {
+            var hittedTarget = collision.GetComponentInParent<IWeaponDamage>();
+            hittedTarget?.ProjectileInflictDamage(damage*2);
+            //Debug.Log("COUP CRITIQUE : " + damage * 2 + " DMG!");
+            gameObject.SetActive(false);
+        }
         else if(source == ProjectileSource.Enemy && collision.CompareTag("Player"))
         {
             var player = collision.GetComponent<IWeaponDamage>();
