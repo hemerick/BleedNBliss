@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19450,7 +19449,7 @@ Transform:
   m_GameObject: {fileID: 1301808462}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4735587, y: 1.4753274, z: 0.052472085}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19470,12 +19469,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnInfos:
   - enemy: {fileID: 6226008617931235186, guid: 8d54b0677313d28448e67ba82e043f8e, type: 3}
-    spawnChance: 10
+    spawnChance: 0
   - enemy: {fileID: 2435962979087170902, guid: 1db98753bf2212a448fe146fd59fc38b, type: 3}
-    spawnChance: 20
+    spawnChance: 0
   - enemy: {fileID: 8380442798133093372, guid: 0a2747a978c2c364ba6b5947cdaa2e69, type: 3}
-    spawnChance: 2.5
-  defaultEnemy: {fileID: 6299463800855934744, guid: d8285cc656bf27c4b8563bfe9491f941, type: 3}
+    spawnChance: 0
+  defaultEnemy: {fileID: 2435962979087170902, guid: 1db98753bf2212a448fe146fd59fc38b, type: 3}
   bossPrefab: {fileID: 7370532846678023903, guid: e6f2ad5e89808fd44be6a8ce4ce81efc, type: 3}
   spawnRadius: 9
   spawnAmount: 3

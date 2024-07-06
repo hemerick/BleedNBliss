@@ -27,6 +27,7 @@ public abstract class Enemy : MonoBehaviour, IPoolable, IWeaponDamage
     protected GameObject target;
     protected Rigidbody2D rb;
     protected SpriteRenderer sprite;
+    protected Animator animator;
 
     //EVENT
     public static event Action<int> EnemyDeathEvent;
@@ -37,6 +38,7 @@ public abstract class Enemy : MonoBehaviour, IPoolable, IWeaponDamage
         target = Player.GetInstance().gameObject;
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     public void Reset()
